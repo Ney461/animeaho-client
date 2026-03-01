@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/anime.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <title>AnimeAho</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__inner">
+            <a href="index.html">
+                <img src="assets/images/logo-animeaho.png" alt="AnimeAho" class="header__logo">
+            </a>
+
+            <div class="header__search">
+                <input type="search" placeholder="Buscar..." aria-label="Buscar anime">
+                <a href="" aria-label="Buscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" aria-hidden="true">
+                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <nav class="header__nav" aria-label="Navegación principal">
+                <a href="index.html">INICIO</a>
+                <a href="">ANIMES</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main__inner">
+            <aside id="anime-aside" class="main__anime-aside">
+                <div id="anime-cover" class="main__anime-cover"></div>
+                <div id="anime-popularity" class="main__anime-popularity"></div>
+                <div id="anime-status" class="main__anime-status"></div>
+            </aside>
+
+            <section id="anime-info" class="main__anime-info">
+                <div id="anime-title" class="main__anime-title"></div>
+                <div id="anime-type" class="main__anime-type"></div>
+                <div id="anime-description" class="main__anime-description"></div>
+                <div id="anime-relations" class="main__anime-relations"></div>
+                <div id="anime-genres" class="main__anime-genres"></div>
+            </section>
+
+            <section id="anime-episodes" class="main__anime-episodes">
+                <div id="anime-next" class="main__anime-next"></div>
+                
+                <div class="main__episodes-controls">
+                    <div class="main__episodes-left">
+                        <label for="episodes-sort" class="main__episodes-label">Ordenar episodios:</label>
+                        <select id="episodes-sort" class="main__episodes-select">
+                            <option value="desc">Descendente (Nuevos primero)</option>
+                            <option value="asc">Ascendente (Antiguos primero)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="main__episodes-search-group">
+                        <input 
+                            type="number" 
+                            id="episodes-search" 
+                            class="main__episodes-search-input" 
+                            placeholder="Buscar episodio..."
+                        />
+                        <button class="main__episodes-search-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                            Buscar
+                        </button>
+                        <button class="main__episodes-refresh-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" 
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                <polyline points="3 3 3 8 8 8"></polyline>
+                            </svg>
+                            Refrescar
+                        </button>
+
+                    </div>
+                </div>
+                
+                <div class="main__episodes-scroll">
+                    <div id="anime-list" class="main__anime-list"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__inner">
+            <small>&copy; AnimeAho - Todos los derechos reservados</small>
+        </div>
+    </footer>
+
+    <script type="module" src="js/pages/anime.js"></script>
+</body>
+</html>

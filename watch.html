@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/watch.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <title>AnimeAho</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__inner">
+            <a href="index.html">
+                <img src="assets/images/logo-animeaho.png" alt="AnimeAho" class="header__logo">
+            </a>
+
+            <div class="header__search">
+                <input type="search" placeholder="Buscar..." aria-label="Buscar anime">
+                <a href="" aria-label="Buscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" aria-hidden="true">
+                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <nav class="header__nav" aria-label="Navegación principal">
+                <a href="index.html">INICIO</a>
+                <a href="">ANIMES</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main__inner">
+            <div class="main__title" id="video-title"></div>
+
+            <div class="main__player-wrapper" id="video-wrapper">
+                <div class="main__player" id="video-player"></div>
+                <div class="main__servers" id="video-servers"></div>
+            </div>
+
+            <!-- <div class="main__downloads" id="video-downloads">
+                <table class="main__downloads-table" id="download-table">
+                    <caption>Servidores para descargar los episodios</caption>
+                    <thead>
+                        <tr>
+                            <th>Servidor</th>
+                            <th>Formato</th>
+                            <th>Descargar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div> -->
+            
+            <div class="main__controls" id="video-controls">
+                <div class="main__controls-nav" id="video-nav"></div>
+                <div class="main__controls-back" id="video-back"></div>
+            </div>
+
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__inner">
+            <small>&copy; AnimeAho - Todos los derechos reservados</small>
+        </div>
+    </footer>
+
+    <script type="module" src="js/pages/watch.js"></script>
+</body>
+</html>
