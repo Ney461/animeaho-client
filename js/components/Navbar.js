@@ -5,12 +5,12 @@ export function renderEpisodeNavigation(prevEpisodeSlug, nextEpisodeSlug, domEle
     domElementCache.navigationButtons.innerHTML = '';
     
     if (prevEpisodeSlug) {
-        const prevButton = createNavigationButton('← Episodio anterior', prevEpisodeSlug, 'prev');
+        const prevButton = createNavigationButton('Episodio anterior', prevEpisodeSlug, 'prev');
         domElementCache.navigationButtons.appendChild(prevButton);
     }
 
     if (nextEpisodeSlug) {
-        const nextButton = createNavigationButton('Episodio siguiente →', nextEpisodeSlug, 'next');
+        const nextButton = createNavigationButton('Episodio siguiente', nextEpisodeSlug, 'next');
         domElementCache.navigationButtons.appendChild(nextButton);
     }
 }
@@ -19,7 +19,20 @@ export function renderEpisodeNavigation(prevEpisodeSlug, nextEpisodeSlug, domEle
 function createNavigationButton(label, episodeSlug, direction) {
     const button = document.createElement('button');
     button.className = `main__nav-btn main__nav-btn--${direction}`;
-    button.textContent = label;
+    
+    if (direction === 'prev') {
+        button.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M360-200 80-480l280-280 56 56-183 184h647v80H233l184 184-57 56Z"/></svg>
+        ${label}
+        `;
+    } else {
+        button.innerHTML = `
+        ${label}
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
+        `;
+        }
+
+
     button.setAttribute('aria-label', `Ir a ${label.toLowerCase()}`);
     
     button.addEventListener('click', () => {
@@ -38,8 +51,12 @@ function navigateToEpisode(episodeSlug) {
 export function renderReturnButton(animeSlug, domElementCache) {
     const button = document.createElement('button');
     button.className = 'main__back-btn';
-    button.textContent = '← Volver al anime';
     button.setAttribute('aria-label', 'Volver a la página del anime');
+
+    button.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+    Volver al anime
+    `
     
     button.addEventListener('click', () => {
         navigateToAnimeDetail(animeSlug);

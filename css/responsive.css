@@ -319,7 +319,8 @@
         min-width: unset;
     }
 
-    .main__episodes-search-btn {
+    .main__episodes-search-btn, 
+    .main__episodes-refresh-btn {
         width: 100%;
     }
 
@@ -375,7 +376,8 @@
         font-size: 0.85rem;
     }
 
-    .main__episodes-search-btn {
+    .main__episodes-search-btn,
+    .main__episodes-refresh-btn {
         width: 100%;
         font-size: 0.85rem;
     }

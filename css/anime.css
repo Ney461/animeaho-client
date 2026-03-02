@@ -1,5 +1,11 @@
 /* anime.css - Estilos específicos de la página de detalle de anime */
 
+:root {
+    --color-airing : #2D8AF9;
+    --color-completed : #22C55E;
+    --color-upcoming : #F59E0B;
+}
+
 /* ============= LAYOUT ============= */
 
 .main__inner {
@@ -231,12 +237,14 @@
 }
 
 .main__anime-status-icon {
+    display: flex;
+    align-items: center;
     color: var(--color-accent-alt);
-    flex-shrink: 0;
-    width: 18px;
-    height: 18px;
-    min-width: 18px;
 }
+
+.status--airing { color: var(--color-airing) }
+.status--completed { color: var(--color-completed) }
+.status--upcoming  { color: var(--color-upcoming) }
 
 /* Controles de episodios */
 .main__episodes-controls {
