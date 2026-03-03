@@ -9,13 +9,23 @@ let currentEpisodeSortOrder = 'desc';
 let episodeListContainer = null;
 let episodeSortSelector = null;
 
-// Inicializa referencias al DOM
+/**
+ * Inicializa las referencias al DOM para la lista de episodios.
+ *
+ * @param {string} listContainerId - ID del contenedor de la lista
+ * @param {string} sortSelectorId - ID del selector de orden
+ */
 export function initializeEpisodeList(listContainerId, sortSelectorId) {
     episodeListContainer = document.getElementById(listContainerId);
     episodeSortSelector = document.getElementById(sortSelectorId);
 }
 
-// Renderiza la lista de episodios
+/**
+ * Renderiza la lista completa de episodios y activa el listener de ordenamiento.
+ *
+ * @param {Object[]} episodeList - Lista de episodios
+ * @param {string} animeCoverUrl - URL de la portada del anime
+ */
 export function renderEpisodesList(episodeList, animeCoverUrl) {
     currentEpisodesList = episodeList;
     currentEpisodeSortOrder = 'desc';
@@ -25,7 +35,11 @@ export function renderEpisodesList(episodeList, animeCoverUrl) {
     attachEpisodeSortListener(animeCoverUrl);
 }
 
-// Obtiene episodios ordenados (asc o desc)
+/**
+ * Retorna los episodios ordenados según `currentEpisodeSortOrder`.
+ *
+ * @returns {Object[]} Lista de episodios ordenada
+ */
 function getSortedEpisodes() {
     const sorted = [...currentEpisodesList];
 
@@ -38,7 +52,12 @@ function getSortedEpisodes() {
     return sorted;
 }
 
-// Renderiza los episodios en el DOM
+/**
+ * Renderiza los episodios en el contenedor del DOM.
+ *
+ * @param {Object[]} episodesToRender - Episodios a renderizar
+ * @param {string} animeCoverUrl - URL de la portada del anime
+ */
 function renderEpisodes(episodesToRender, animeCoverUrl) {
     if (!episodeListContainer) return;
     
@@ -50,7 +69,15 @@ function renderEpisodes(episodesToRender, animeCoverUrl) {
     });
 }
 
-// Crea un card de episodio
+/**
+ * Crea una tarjeta de episodio con portada y número.
+ *
+ * @param {Object} episode - Datos del episodio
+ * @param {number} episode.number - Número del episodio
+ * @param {string} episode.slug - Slug del episodio
+ * @param {string} animeCoverUrl - URL de la portada del anime
+ * @returns {HTMLElement} Tarjeta de episodio lista para insertar en el DOM
+ */
 export function createEpisodeCard(episode, animeCoverUrl) {
     const container = document.createElement('div');
     container.className = 'main__anime-episode';
@@ -86,13 +113,23 @@ export function createEpisodeCard(episode, animeCoverUrl) {
     return container;
 }
 
-// Construye URL de portada del episodio
+/**
+ * Construye la URL de la portada de un episodio a partir de la portada del anime.
+ *
+ * @param {string} animeCoverUrl - URL de la portada del anime
+ * @param {number} episodeNumber - Número del episodio
+ * @returns {string} URL de la portada del episodio
+ */
 function buildEpisodeCoverUrl(animeCoverUrl, episodeNumber) {
     const animeId = animeCoverUrl.split('/').pop().replace('.jpg', '');
     return `${EPISODE_COVER_BASE_URL}/${animeId}/${episodeNumber}/th_3.jpg`;
 }
 
-// Listener del selector de orden
+/**
+ * Inicializa el listener del selector de orden de episodios.
+ *
+ * @param {string} animeCoverUrl - URL de la portada del anime
+ */
 function attachEpisodeSortListener(animeCoverUrl) {
     if (!episodeSortSelector) return;
 

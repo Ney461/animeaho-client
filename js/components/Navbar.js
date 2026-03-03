@@ -1,6 +1,14 @@
 import { navigateToAnimeDetail } from './AnimeLink.js';
 
-// Renderiza botones de navegación entre episodios
+/**
+ * Renderiza los botones de navegación entre episodios (anterior y siguiente).
+ * Solo renderiza el botón si existe el slug correspondiente.
+ *
+ * @param {string|null} prevEpisodeSlug - Slug del episodio anterior
+ * @param {string|null} nextEpisodeSlug - Slug del episodio siguiente
+ * @param {Object} domElementCache - Cache de referencias al DOM
+ * @param {HTMLElement} domElementCache.navigationButtons - Contenedor de los botones
+ */
 export function renderEpisodeNavigation(prevEpisodeSlug, nextEpisodeSlug, domElementCache) {
     domElementCache.navigationButtons.innerHTML = '';
     
@@ -15,7 +23,14 @@ export function renderEpisodeNavigation(prevEpisodeSlug, nextEpisodeSlug, domEle
     }
 }
 
-// Crea un botón de navegación
+/**
+ * Crea un botón de navegación con ícono SVG según la dirección.
+ *
+ * @param {string} label - Texto del botón (ej: "Episodio anterior")
+ * @param {string} episodeSlug - Slug del episodio destino
+ * @param {'prev'|'next'} direction - Dirección de navegación
+ * @returns {HTMLButtonElement} Botón listo para insertar en el DOM
+ */
 function createNavigationButton(label, episodeSlug, direction) {
     const button = document.createElement('button');
     button.className = `main__nav-btn main__nav-btn--${direction}`;
@@ -42,12 +57,22 @@ function createNavigationButton(label, episodeSlug, direction) {
     return button;
 }
 
-// Navega a un episodio
+/**
+ * Navega a la página de reproducción de un episodio.
+ *
+ * @param {string} episodeSlug - Slug del episodio destino
+ */
 function navigateToEpisode(episodeSlug) {
     window.location.href = `/client/watch.html?slug=${episodeSlug}`;
 }
 
-// Botón para volver a la página del anime
+/**
+ * Renderiza el botón para volver a la página del anime.
+ *
+ * @param {string} animeSlug - Slug del anime
+ * @param {Object} domElementCache - Cache de referencias al DOM
+ * @param {HTMLElement} domElementCache.backButton - Contenedor del botón
+ */
 export function renderReturnButton(animeSlug, domElementCache) {
     const button = document.createElement('button');
     button.className = 'main__back-btn';

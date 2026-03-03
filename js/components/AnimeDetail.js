@@ -1,14 +1,15 @@
 // Renderiza detalles completos del anime (portada, sinópsis, géneros, episodios, etc.)
 
 import { renderEpisodesList, initializeEpisodeList, createEpisodeCard } from './EpisodeList.js';
-import { extractSlugFromURL } from '../pages/anime.js';
-
 
 let domElementCache = {};
 let listEpisodes = [];
 let animeCover = ''
 
-// Cachea referencias al DOM
+/**
+ * Cachea referencias a los elementos del DOM necesarios para renderizar el detalle del anime.
+ * Almacena los elementos en `domElementCache` para evitar múltiples consultas al DOM.
+ */
 function cacheDOM() {
     domElementCache = {
         cover: document.getElementById('anime-cover'),
@@ -25,7 +26,24 @@ function cacheDOM() {
     };
 }
 
-// Renderiza todos los detalles del anime
+/**
+ * Renderiza todos los detalles del anime en el DOM.
+ * Orquesta el renderizado de portada, título, sinopsis, géneros, relaciones,
+ * rating, estado, próximo episodio y lista de episodios.
+ *
+ * @param {Object} animeData - Datos completos del anime
+ * @param {string} animeData.cover - URL de la portada
+ * @param {string} animeData.title - Título principal
+ * @param {string} animeData.type - Tipo (TV, Movie, OVA, etc.)
+ * @param {string[]} animeData.alternativeTitles - Títulos alternativos
+ * @param {string} animeData.synopsis - Sinopsis
+ * @param {string[]} animeData.genres - Lista de géneros
+ * @param {Object[]} animeData.related - Animes relacionados
+ * @param {string} animeData.rating - Puntuación (ej: "4.5")
+ * @param {string} animeData.status - Estado del anime
+ * @param {string|null} animeData.nextAiringEpisode - Fecha del próximo episodio
+ * @param {Object[]} animeData.episode - Lista de episodios
+ */
 export function renderAnimeDetail(animeData) {
     listEpisodes = animeData.episode;
 
@@ -49,7 +67,11 @@ export function renderAnimeDetail(animeData) {
 
 }
 
-// Renderiza portada
+/**
+ * Renderiza la portada del anime.
+ *
+ * @param {string} coverUrl - URL de la imagen de portada
+ */
 function renderCoverImage(coverUrl) {
     const image = document.createElement('img');
     image.src = coverUrl;
@@ -59,7 +81,11 @@ function renderCoverImage(coverUrl) {
     domElementCache.cover.appendChild(image);
 }
 
-// Renderiza título principal
+/**
+ * Renderiza el título principal del anime.
+ *
+ * @param {string} title - Título del anime
+ */
 function renderMainTitle(title) {
     const titleElement = document.createElement('p');
     titleElement.className = 'main__anime-title';
@@ -68,7 +94,12 @@ function renderMainTitle(title) {
     domElementCache.title.appendChild(titleElement);
 }
 
-// Renderiza tipo y títulos alternativos
+/**
+ * Renderiza el badge de tipo y los títulos alternativos del anime.
+ *
+ * @param {string} type - Tipo del anime (TV, Movie, OVA, etc.)
+ * @param {string[]} alternativeTitles - Lista de títulos alternativos
+ */
 function renderTypeAndAlternativeTitles(type, alternativeTitles) {
     const typeBadge = document.createElement('span');
     typeBadge.className = 'main__anime-badge';
@@ -86,7 +117,11 @@ function renderTypeAndAlternativeTitles(type, alternativeTitles) {
     });
 }
 
-// Renderiza sinópsis
+/**
+ * Renderiza la sinopsis del anime.
+ *
+ * @param {string} synopsis - Texto de la sinopsis
+ */
 function renderSynopsis(synopsis) {
     const synopsisElement = document.createElement('p');
     synopsisElement.className = 'main__anime-synopsis';
@@ -95,7 +130,11 @@ function renderSynopsis(synopsis) {
     domElementCache.description.appendChild(synopsisElement);
 }
 
-// Renderiza géneros como enlaces
+/**
+ * Renderiza los géneros del anime como enlaces navegables.
+ *
+ * @param {string[]} genreList - Lista de géneros
+ */
 function renderGenreLinks(genreList) {
     genreList.forEach(genre => {
         const genreLink = document.createElement('a');
@@ -108,7 +147,14 @@ function renderGenreLinks(genreList) {
     });
 }
 
-// Renderiza animes relacionados
+/**
+ * Renderiza los animes relacionados como enlaces.
+ *
+ * @param {Object[]} relatedAnimesList - Lista de animes relacionados
+ * @param {string} relatedAnimesList[].title - Título del anime relacionado
+ * @param {string} relatedAnimesList[].relation - Tipo de relación (Precuela, Secuela, etc.)
+ * @param {string} relatedAnimesList[].slug - Slug del anime relacionado
+ */
 function renderRelatedAnimes(relatedAnimesList) {
     relatedAnimesList.forEach(relatedAnime => {
         const link = document.createElement('a');
@@ -121,7 +167,11 @@ function renderRelatedAnimes(relatedAnimesList) {
     });
 }
 
-// Renderiza calificación con estrellas
+/**
+ * Renderiza la calificación del anime con estrellas SVG de relleno parcial.
+ *
+ * @param {string|number} rating - Puntuación del anime (0-5)
+ */
 function renderRatingWithStars(rating) {
     const ratingNumber = parseFloat(rating) || 0;
     const container = document.createElement('div');
@@ -144,7 +194,13 @@ function renderRatingWithStars(rating) {
     domElementCache.popularity.appendChild(container);
 }
 
-// Crea SVG de estrella con relleno parcial
+/**
+ * Crea un elemento SVG de estrella con relleno parcial según el rating.
+ *
+ * @param {number} position - Posición de la estrella (1-5)
+ * @param {number} ratingValue - Puntuación total del anime
+ * @returns {SVGSVGElement} Elemento SVG de la estrella
+ */
 function createRatingStar(position, ratingValue) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('class', 'main__anime-star');
@@ -210,8 +266,8 @@ function createRatingStar(position, ratingValue) {
 
 /**
  * Calcula el porcentaje de relleno de una estrella basado en el rating.
- * Si el rating es 4.5, la 5ª estrella se rellenará al 50%.
- * 
+ * Ejemplo: rating 4.5 → estrella 5 se rellena al 50%.
+ *
  * @param {number} starPosition - Posición de la estrella (1-5)
  * @param {number} ratingValue - Puntuación total del anime
  * @returns {number} Porcentaje de relleno (0-100)
@@ -229,11 +285,10 @@ function calculateStarFillPercentage(starPosition, ratingValue) {
 }
 
 /**
- * Renderiza el estado del anime con un icono descriptivo.
- * Soporta estados como "Airing", "Completed" y "Upcoming".
- * 
- * @param {string} animeStatus - Estado del anime (ej: "Airing", "Completed")
- * @returns {void}
+ * Renderiza el estado del anime con un ícono SVG descriptivo.
+ * Soporta: "Airing", "Completed" y "Upcoming".
+ *
+ * @param {string} animeStatus - Estado del anime
  */
 function renderAnimeStatus(animeStatus) {
     const container = document.createElement('div');
@@ -246,12 +301,12 @@ function renderAnimeStatus(animeStatus) {
     domElementCache.status.appendChild(container);
 }
 
+
 /**
- * Crea un SVG de icono que representa el estado del anime.
- * Diferentes estados tienen diferentes iconos visuales.
- * 
- * @param {string} statusText - Texto del estado
- * @returns {SVGSVGElement} Elemento SVG del icono
+ * Crea el ícono SVG y el texto correspondiente al estado del anime.
+ *
+ * @param {string} statusText - Texto del estado (ej: "Airing", "Completed")
+ * @returns {{ statusIcon: HTMLElement, statusText: HTMLElement }}
  */
 function createStatusIcon(statusText) {
     const statusSpan = document.createElement('span');
@@ -291,7 +346,12 @@ function createStatusIcon(statusText) {
     return { statusIcon: statusSpan, statusText: status };
 }
 
-// Renderiza info del próximo episodio
+/**
+ * Renderiza la información del próximo episodio.
+ * Si no hay fecha, oculta el contenedor.
+ *
+ * @param {string|null} nextAiringDate - Fecha del próximo episodio o null
+ */
 function renderNextEpisodeInfo(nextAiringDate) {
     if (!nextAiringDate) {
         domElementCache.nextEpisode.style.display = 'none';
@@ -317,6 +377,9 @@ function renderNextEpisodeInfo(nextAiringDate) {
     domElementCache.nextEpisode.appendChild(container);
 }
 
+/**
+ * Inicializa los listeners de los botones de búsqueda y refresco de episodios.
+ */
 function listenerSearchRefreshButton() {
     const search = document.querySelector('.main__episodes-search-btn');
     const refresh = document.querySelector('.main__episodes-refresh-btn')
@@ -325,6 +388,10 @@ function listenerSearchRefreshButton() {
     refresh.addEventListener('click', () => refreshEpisodesList())
 }
 
+/**
+ * Busca un episodio por número y lo renderiza.
+ * Si el input está vacío, restaura la lista completa.
+ */
 function searchEpisode() {
     const input = document.querySelector('.main__episodes-search-input');
     const value = input.value;
@@ -349,12 +416,18 @@ function searchEpisode() {
     }
 }
 
+/**
+ * Restaura la lista completa de episodios y limpia el input de búsqueda.
+ */
 function refreshEpisodesList() {
     renderEpisodesList(listEpisodes, animeCover)
     const input = document.querySelector('.main__episodes-search-input');
     input.value = ''
 }
 
+/**
+ * Muestra un mensaje de error cuando el episodio buscado no existe.
+ */
 function handleEpisodeNotFound() {
     console.error('El episodio del anime solicitado no fue encontrado');
     const mainAnimeList = document.querySelector('.main__anime-list');

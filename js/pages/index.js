@@ -3,24 +3,38 @@
 import {
     getAiringAnimes,
     getLatestEpisodes,
-    searchAnimeFilter
+    searchAnimeFilter,
 } from '../services/animeService.js';
 import { createAnimeCard } from '../components/AnimeCard.js';
 import { createAnimeLinks } from '../components/AnimeLink.js';
+import { addListenerInput } from '../utils/search.js';
+import { displayErrorMessage } from '../utils/errorHandler.js';
 
-// Inicializa la página principal
+/**
+ * Inicializa la página principal cargando todas las secciones.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function initializeHomePage() {
     try {
         await loadAiringAnimes();
         await loadLatestEpisodes();
         await loadLatestAnimes();
+        addListenerInput();
+
     } catch (error) {
         console.error('Error al inicializar la página principal:', error);
         displayErrorMessage('Error al cargar el contenido. Intenta recargar la página.');
     }
 }
 
-// Carga animes en emisión
+/**
+ * Carga y renderiza los animes actualmente en emisión en la sección lateral.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function loadAiringAnimes() {
     try {
         const response = await getAiringAnimes();
@@ -46,9 +60,8 @@ async function loadAiringAnimes() {
 }
 
 /**
- * Carga y renderiza los últimos episodios lanzados.
- * Los episodios se muestran como tarjetas con información del episodio.
- * 
+ * Carga y renderiza los últimos episodios lanzados como tarjetas.
+ *
  * @async
  * @returns {Promise<void>}
  */
@@ -83,8 +96,8 @@ async function loadLatestEpisodes() {
 
 /**
  * Carga y renderiza los últimos animes agregados al catálogo.
- * Utiliza filtros predefinidos para obtener un válido de animes variados.
- * 
+ * Usa filtros predefinidos para obtener animes de todos los tipos y estados.
+ *
  * @async
  * @returns {Promise<void>}
  */
@@ -119,23 +132,7 @@ async function loadLatestAnimes() {
             section.appendChild(animeCard);
         });
     } catch (error) {
-        console.error('Error al cargar últimos animes:', error);
-    }
-}
-
-/**
- * Muestra un mensaje de error genérico al usuario.
- * 
- * @param {string} message - Mensaje de error a mostrar
- * @returns {void}
- */
-function displayErrorMessage(message) {
-    const mainContent = document.querySelector('.main__content') || document.querySelector('main');
-    if (mainContent) {
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message-container';
-        errorDiv.innerHTML = `<p class="error-message">${message}</p>`;
-        mainContent.prepend(errorDiv);
+        displayErrorMessage(`Error al cargar últimos animes: ${error}`)
     }
 }
 

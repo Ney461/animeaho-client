@@ -5,7 +5,13 @@ import { LatestEpisodesResponse, AnimeBySlugResponse, EpisodeBySlugResponse,
         EpisodeBySlugNumberResponse, AiringAnimesResponse, SearchAnimeResponse,
         ResponseError } from "../models/Anime.js";
 
-// Obtiene información completa de un anime
+/**
+ * Obtiene información completa de un anime por su slug.
+ *
+ * @async
+ * @param {string} animeSlug - Slug del anime
+ * @returns {Promise<AnimeBySlugResponse|ResponseError>}
+ */
 export async function getAnimeBySlug(animeSlug) {
     const endpoint = ANIME_API_BASE_URL + ANIME_ENDPOINTS.ANIME_SLUG(animeSlug);
     try {
@@ -24,7 +30,13 @@ export async function getAnimeBySlug(animeSlug) {
     }
 }
 
-// Obtiene información de un episodio por slug
+/**
+ * Obtiene información de un episodio por su slug.
+ *
+ * @async
+ * @param {string} episodeSlug - Slug del episodio
+ * @returns {Promise<EpisodeBySlugResponse|ResponseError>}
+ */
 export async function getEpisodeBySlug(episodeSlug) {
     const endpoint = ANIME_API_BASE_URL + ANIME_ENDPOINTS.EPISODE_SLUG(episodeSlug);
     try {
@@ -43,7 +55,14 @@ export async function getEpisodeBySlug(episodeSlug) {
     }
 }
 
-// Obtiene episodio por anime slug + número
+/**
+ * Obtiene un episodio por el slug del anime y su número.
+ *
+ * @async
+ * @param {string} animeSlug - Slug del anime
+ * @param {number} episodeNumber - Número del episodio
+ * @returns {Promise<EpisodeBySlugNumberResponse|ResponseError>}
+ */
 export async function getEpisodeBySlugNumber(animeSlug, episodeNumber) {
     const endpoint = ANIME_API_BASE_URL + ANIME_ENDPOINTS.EPISODE_SLUG_NUMER(animeSlug, episodeNumber);
     try {
@@ -63,7 +82,8 @@ export async function getEpisodeBySlugNumber(animeSlug, episodeNumber) {
 }
 
 /**
- * Obtiene animes actualmente en emisión
+ * Obtiene los animes actualmente en emisión.
+ *
  * @async
  * @returns {Promise<AiringAnimesResponse|ResponseError>}
  */
@@ -85,7 +105,12 @@ export async function getAiringAnimes() {
     }
 }
 
-// Obtiene últimos episodios lanzados
+/**
+ * Obtiene los últimos episodios lanzados.
+ *
+ * @async
+ * @returns {Promise<LatestEpisodesResponse|ResponseError>}
+ */
 export async function getLatestEpisodes() {
     const endpoint = ANIME_API_BASE_URL + ANIME_ENDPOINTS.LATEST_EPISODES;
     try {
@@ -104,17 +129,26 @@ export async function getLatestEpisodes() {
     }
 }
 
-// Búsqueda simple de animes por texto
-export async function searchAnimeWithText(searchQuery) {
-    const params = new URLSearchParams({ query: searchQuery, page: 1 });
+/**
+ * Busca animes por texto con soporte de paginación y cancelación.
+ *
+ * @async
+ * @param {string} searchQuery - Texto de búsqueda
+ * @param {number} [page=1] - Número de página
+ * @param {AbortSignal|null} [signal=null] - Signal para cancelar la petición
+ * @returns {Promise<SearchAnimeResponse|ResponseError|undefined>}
+ */
+export async function searchAnimeWithText(searchQuery, page = 1, signal = null) {
+    const params = new URLSearchParams({ query: searchQuery, page });
     const endpoint = `${ANIME_API_BASE_URL}${ANIME_ENDPOINTS.SEARCH_ANIME}?${params}`;
     try {
-        const response = await fetch(endpoint);
+        const response = await fetch(endpoint, { signal });
         const data = await response.json();
         if (!response.ok) return new ResponseError(data);
         if (!data.success) return new ResponseError(data);
         return new SearchAnimeResponse(data);
     } catch (error) {
+        if (error.name === 'AbortError') return; // ← ignora cancelaciones
         console.error("Error al buscar anime:", error);
         return new ResponseError({
             data: null, error: true,
@@ -124,7 +158,18 @@ export async function searchAnimeWithText(searchQuery) {
     }
 }
 
-// Búsqueda con filtros avanzados
+/**
+ * Busca animes aplicando filtros avanzados.
+ *
+ * @async
+ * @param {Object} options - Opciones de filtrado
+ * @param {string} [options.order='default'] - Criterio de ordenamiento
+ * @param {string[]} [options.types=[]] - Tipos de anime (tv, movie, ova, special)
+ * @param {string[]} [options.genres=[]] - Géneros a filtrar
+ * @param {number[]} [options.statuses=[]] - Estados del anime (1=en emisión, 2=finalizado, 3=próximamente)
+ * @param {number} [options.page=1] - Número de página
+ * @returns {Promise<SearchAnimeResponse|ResponseError>}
+ */
 export async function searchAnimeFilter({ order = 'default', types = [], genres = [], statuses = [], page = 1 } = {}) {
     const params = new URLSearchParams({ order, page });
     const endpoint = `${BACKEND_API_BASE_URL}${BACKEND_ENDPOINTS.PROXY_SEARCH_BY_FILTER}?${params}`;
@@ -149,7 +194,13 @@ export async function searchAnimeFilter({ order = 'default', types = [], genres 
     }
 }
 
-// Búsqueda de animes por URL
+/**
+ * Busca animes a partir de una URL externa.
+ *
+ * @async
+ * @param {string} searchUrl - URL de búsqueda
+ * @returns {Promise<SearchAnimeResponse|ResponseError>}
+ */
 export async function searchAnimeWithUrl(searchUrl) {
     const params = new URLSearchParams({ url: searchUrl });
     const endpoint = `${ANIME_API_BASE_URL}${ANIME_ENDPOINTS.SEARCH_BY_URL}?${params}`;

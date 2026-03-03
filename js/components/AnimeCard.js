@@ -1,12 +1,18 @@
-// Renderiza tarjetas de anime en forma de grid
-// Cada tarjeta tiene portada, título y badge opcional
+// AnimeCard.js
+// Componente que renderiza tarjetas de anime en forma de grid.
+// Cada tarjeta muestra portada, título y un badge opcional.
+// Maneja navegación al detalle del anime o directamente a un episodio.
 
 import { navigateToAnimeDetail } from './AnimeLink.js';
 
-// Crea una tarjeta de anime
-// anime: {title, cover, slug}
-// badgeText: texto opcional del badge
-// isDetailView: true=detalle, false=primer episodio
+/**
+ * Crea una tarjeta de anime con portada, título y badge opcional.
+ * 
+ * @param {Object} anime - Datos del anime { title, cover, slug }
+ * @param {string|null} badgeText - Texto del badge (ej: "Episodio 3"). null = sin badge
+ * @param {boolean} isDetailView - true = navega al detalle | false = navega al episodio
+ * @returns {HTMLElement} Tarjeta lista para insertar en el DOM
+ */
 export function createAnimeCard(anime, badgeText = null, isDetailView = true) {
     const article = document.createElement('article');
     article.className = 'anime-card';
@@ -48,7 +54,12 @@ export function createAnimeCard(anime, badgeText = null, isDetailView = true) {
     return article;
 }
 
-// Navega según el tipo de vista (detalle o episodio)
+/**
+ * Navega al detalle o al episodio según el tipo de vista.
+ * 
+ * @param {string} slug - Slug del anime o episodio
+ * @param {boolean} isDetailView - true = detalle | false = episodio
+ */
 function handleCardNavigation(slug, isDetailView) {
     if (isDetailView) {
         navigateToAnimeDetail(slug);
@@ -57,7 +68,11 @@ function handleCardNavigation(slug, isDetailView) {
     }
 }
 
-// Navega a watch.html con el slug del episodio
+/**
+ * Navega a la página de reproducción del episodio.
+ * 
+ * @param {string} episodeSlug - Slug del episodio
+ */
 export function navigateToEpisode(episodeSlug) {
     window.location.href = `watch.html?slug=${episodeSlug}`;
 }

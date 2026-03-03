@@ -75,11 +75,11 @@ body {
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     transition: border-color 0.2s, box-shadow 0.2s;
     flex: 0 1 380px;
+    border-radius: 5px;
+    position: relative;
 }
 
 .header__search:focus-within {
@@ -92,8 +92,9 @@ body {
     height: 38px;
     padding: 0 14px;
     background: transparent;
-    border: none;
     outline: none;
+    border: 1px solid var(--color-border);
+    border-radius: 5px 0 0 5px;
     color: var(--color-text);
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -103,19 +104,66 @@ body {
     color: var(--color-text-muted);
 }
 
-.header__search a {
+.header__search-link {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 13px;
     height: 38px;
+    border-radius: 0 5px 5px 0;
     background-color: var(--color-accent);
     transition: background-color 0.2s;
     flex-shrink: 0;
 }
 
-.header__search a:hover {
+.header__search-link:hover {
     background-color: var(--color-accent-alt);
+}
+
+
+.header__search-dropdown {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: var(--color-header);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    z-index: 999;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 5px;
+    display: none;
+}
+
+.header__search-dropdown-item a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 8px;
+    height: 100px; 
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.header__search-dropdown-item a:hover {
+    background: var(--color-sidebar-hover);
+    border-radius: 5px;
+}
+
+.header__search-dropdown-item img {
+    height: 100%; 
+    width: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.header__search-dropdown-item span {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    font-family: var(--font-body);
 }
 
 /* --- Nav --- */

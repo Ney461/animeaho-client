@@ -5,7 +5,9 @@ import { renderEpisodeNavigation, renderReturnButton } from "./Navbar.js";
 let domElementCache = {};
 let animeTitle = '';
 
-// Cachea referencias al DOM
+/**
+ * Cachea referencias a los elementos del DOM del reproductor.
+ */
 function cacheDOM() {
     domElementCache = {
         videoTitle: document.getElementById('video-title'),
@@ -18,7 +20,17 @@ function cacheDOM() {
     };
 }
 
-// Renderiza el reproductor completo
+/**
+ * Renderiza el reproductor completo: título, video, servidores y navegación.
+ *
+ * @param {Object} episodeData - Datos del episodio
+ * @param {string} episodeData.title - Título del anime
+ * @param {number} episodeData.number - Número del episodio
+ * @param {Object[]} episodeData.servers - Lista de servidores disponibles
+ * @param {string|null} prevEpisodeSlug - Slug del episodio anterior
+ * @param {string|null} nextEpisodeSlug - Slug del episodio siguiente
+ * @param {string} animeSlug - Slug del anime
+ */
 export function renderVideoPlayer(episodeData, prevEpisodeSlug, nextEpisodeSlug, animeSlug) {
     cacheDOM();
 
@@ -29,7 +41,12 @@ export function renderVideoPlayer(episodeData, prevEpisodeSlug, nextEpisodeSlug,
     renderReturnButton(animeSlug, domElementCache);
 }
 
-// Renderiza el título del episodio
+/**
+ * Renderiza el título del episodio en el DOM.
+ *
+ * @param {string} title - Título del anime
+ * @param {number} episodeNumber - Número del episodio
+ */
 function renderEpisodeTitle(title, episodeNumber) {
     animeTitle = title;
     
@@ -40,7 +57,12 @@ function renderEpisodeTitle(title, episodeNumber) {
     domElementCache.videoTitle.appendChild(titleElement);
 }
 
-// Renderiza el video del primer servidor
+/**
+ * Renderiza el video del primer servidor disponible.
+ * Si no hay servidores, muestra un mensaje de error.
+ *
+ * @param {Object[]} servers - Lista de servidores
+ */
 function renderInitialVideo(servers) {
     if (!servers || servers.length === 0) {
         const errorMsg = document.createElement('p');
@@ -53,7 +75,12 @@ function renderInitialVideo(servers) {
     domElementCache.videoWrapper.appendChild(iframe);
 }
 
-// Crea el iframe del video
+/**
+ * Crea un iframe para reproducir el video.
+ *
+ * @param {string} embedUrl - URL del embed del video
+ * @returns {HTMLIFrameElement} Iframe listo para insertar en el DOM
+ */
 function createVideoIframe(embedUrl) {
     const iframe = document.createElement('iframe');
     iframe.src = embedUrl;
@@ -64,7 +91,12 @@ function createVideoIframe(embedUrl) {
     return iframe;
 }
 
-// Crea botones para cambiar servidores
+/**
+ * Renderiza los botones de selección de servidor.
+ * Omite servidores sin URL de embed.
+ *
+ * @param {Object[]} servers - Lista de servidores
+ */
 function renderServerButtons(servers) {
     servers.forEach((server, index) => {
         if (!server.embed) return;
@@ -79,7 +111,15 @@ function renderServerButtons(servers) {
     });
 }
 
-// Crea un botón de servidor
+/**
+ * Crea un botón de servidor con su estado activo inicial.
+ *
+ * @param {Object} server - Datos del servidor
+ * @param {string} server.name - Nombre del servidor
+ * @param {string} server.embed - URL del embed
+ * @param {boolean} isActive - true = botón marcado como activo
+ * @returns {HTMLButtonElement} Botón listo para insertar en el DOM
+ */
 function createServerButton(server, isActive) {
     const button = document.createElement('button');
     button.className = 'main__servers-btn';
@@ -97,11 +137,10 @@ function createServerButton(server, isActive) {
 }
 
 /**
- * Maneja el cambio de servidor activo y actualiza el video
- * 
+ * Maneja el cambio de servidor activo y actualiza el video.
+ *
  * @param {HTMLButtonElement} serverButton - Botón del servidor seleccionado
- * @param {string} embedUrl - URL del video embed del nuevo servidor
- * @returns {void}
+ * @param {string} embedUrl - URL del embed del nuevo servidor
  */
 function handleServerChange(serverButton, embedUrl) {
     // Remover estado activo de todos los botones
@@ -119,10 +158,10 @@ function handleServerChange(serverButton, embedUrl) {
 }
 
 /**
- * Actualiza el origen del video en el iframe
- * 
+ * Actualiza la URL del iframe del reproductor.
+ * Resetea el src brevemente para forzar la recarga del video.
+ *
  * @param {string} embedUrl - Nueva URL del embed
- * @returns {void}
  */
 function updateVideoSource(embedUrl) {
     const iframe = document.querySelector('.main__player-iframe');
