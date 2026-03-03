@@ -3,6 +3,7 @@
 import { renderEpisodeNavigation, renderReturnButton } from "./Navbar.js";
 
 let domElementCache = {};
+let animeTitle = ''
 
 /**
  * Cachea referencias a los elementos del DOM del reproductor.

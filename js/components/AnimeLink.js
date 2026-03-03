@@ -1,7 +1,5 @@
 // Crea enlaces a animes en listas
 
-import { BASE_URL } from '../config/app.config.js';
-
 /**
  * Crea un item de lista con enlace al detalle del anime.
  *
@@ -34,5 +32,5 @@ export function createAnimeLinks(anime) {
  * @param {string} slug - Slug del anime
  */
 export function navigateToAnimeDetail(slug) {
-    window.location.href = `${BASE_URL}/anime.html?slug=${slug}`;
+    window.location.href = `./anime.html?slug=${slug}`;
 }

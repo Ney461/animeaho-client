@@ -1,3 +1,5 @@
+import { getEpisodeBySlugNumber } from "../services/animeService.js";
+
 /**
  * Verifica si un episodio existe y retorna su slug completo.
  *
