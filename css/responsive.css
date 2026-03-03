@@ -52,6 +52,7 @@
         grid-template-columns: 200px 1fr;
     }
 
+
     .main__anime-list {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
@@ -94,6 +95,12 @@
     .main__inner {
         flex-direction: column;
         padding: 1.2rem 20px;
+    }
+
+    /* also apply to watch page when between 900 and 1150 to keep vertical flow */
+    .main .main__inner {
+        display: flex;
+        flex-direction: column;
     }
 
     .main__sidebar {
@@ -143,14 +150,36 @@
         border-top: 1px solid var(--color-border);
     }
 
-    /* Anime detail responsive */
+    /* Anime detail responsive: keep grid even though other pages become flex */
+    .anime-page .main__inner,
     .main__inner {
+        /* the second selector remains for pages that don't add anime-page class */
         grid-template-columns: 1fr;
+    }
+
+    .anime-page .main__inner {
+        display: grid !important;
+    }
+
+    /* on narrow viewports the container becomes flex-column so we can order children */
+    .main .main__inner,
+    .anime-page .main__inner {
+        display: flex !important;
+        flex-direction: column;
     }
 
     .main__anime-aside {
         grid-column: 1;
         grid-row: auto;
+        /* move aside to top when flexing and centre */
+        order: -1 !important;
+        width: auto !important;          /* size to content instead of stretching full width */
+        max-width: 300px !important;     /* keep a reasonable limit for the poster */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        justify-self: center !important; /* centre the grid item itself */
+        margin: 0 auto !important;       /* also center when container is flex */
     }
 
     .main__anime-info {
@@ -159,6 +188,12 @@
 
     .main__anime-episodes {
         grid-column: 1;
+        display: block !important;          /* allow width to behave consistently */
+        width: 100% !important;             /* full available width */
+        justify-self: stretch !important;   /* ensure it spans entire grid track */
+        margin: 0 !important;               /* no extra margins needed */
+        max-width: none !important;         /* override any other constraint */
+        align-self: stretch !important;     /* when flex, still full width */
     }
 
     .main__anime-list {
@@ -243,9 +278,51 @@
     }
 }
 
-/* ============= MOBILE CHICO (420px) ============= */
+/* ============= TINY (520px) ============= */
 
-@media (max-width: 420px) {
+@media (max-width: 521px) {
+    /* apply same behaviour as 420px, force vertical stacking of all controls */
+    .main__episodes-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    /* left group and search group should also stack so the select/input
+       and their labels don't sit side by side and trigger overflow */
+    .main__episodes-left,
+    .main__episodes-search-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    /* make every interactive element expand to full width and remove
+       any minimum size that could push the container wider than its parent */
+    .main__episodes-select,
+    .main__episodes-search-btn,
+    .main__episodes-refresh-btn,
+    .main__episodes-search-input {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+    }
+
+    /* search input needs its own unset to override the 200px default */
+    .main__episodes-search-input {
+        min-width: unset !important;
+    }
+
+    .main__episodes-search-btn,
+    .main__episodes-refresh-btn {
+        justify-content: center;
+    }
+}
+
+/* ============= MOBILE CHICO (420‑520px) ============= */
+
+@media (max-width: 521px) {
     :root {
         --card-width:     120px;
         --ep-card-width:  140px;
@@ -292,6 +369,7 @@
         flex-direction: column;
         align-items: stretch;
         gap: 0.8rem;
+        margin-bottom: 0.8rem; /* espacio entre controles y lista */
     }
 
     .main__episodes-left {
@@ -302,6 +380,20 @@
 
     .main__episodes-label {
         font-size: 0.85rem;
+    }
+
+    /* for narrow but not mobile-chico screens, prevent select/button overflow */
+    .main__episodes-select,
+    .main__episodes-search-btn,
+    .main__episodes-refresh-btn {
+        min-width: 0; /* allow flex items to shrink below content width */
+        max-width: 100%; /* never exceed parent width */
+        box-sizing: border-box; /* include padding in width calculation */
+    }
+    /* ensure buttons' content centers when they span full width */
+    .main__episodes-search-btn,
+    .main__episodes-refresh-btn {
+        justify-content: center;
     }
 
     .main__episodes-select {

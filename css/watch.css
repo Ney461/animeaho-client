@@ -98,6 +98,7 @@
 
 .main__controls-nav {
     display: flex;
+    width: 100%; /* ensure nav container fills parent */
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
@@ -106,9 +107,50 @@
 .main__controls-back {
     display: flex;
     justify-content: center;
+    width: 100%;
+}
+
+/* make navigation and return buttons share available space and center their contents */
+.main__controls-nav .main__nav-btn,
+.main__controls-back .main__back-btn {
+    flex: 1 1 45%;
+    min-width: 120px;
+    text-align: center;
+    justify-content: center; /* center icon + text */
 }
 
 /* ============= BOTONES DE NAVEGACIÓN ============= */
+
+/* responsive tweaks for navigation/back buttons at tablet/mobile breakpoints */
+@media (max-width: 1150px) {
+    /* watch layout becomes single column so title always on top */
+    .main__inner {
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .main__controls-nav,
+    .main__controls-back {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .main__controls-nav .main__nav-btn,
+    .main__controls-back .main__back-btn {
+        flex: 1 1 100%;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 640px) {
+    .main__controls-nav .main__nav-btn,
+    .main__controls-back .main__back-btn {
+        width: 100%;
+    }
+}
+
 
 .main__nav-btn,
 .main__back-btn {
@@ -124,6 +166,7 @@
     transition: all 0.25s ease;
     display: inline-flex;
     align-items: center;
+    justify-content: center; /* ensure content is centred inside the button */
     gap: 8px;
     white-space: nowrap;
 }
