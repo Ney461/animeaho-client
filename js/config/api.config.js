@@ -9,6 +9,13 @@
 export const ANIME_API_BASE_URL = 'https://animeflv.ahmedrangel.com';
 
 /**
+ * URL base para navegación entre páginas.
+ * En local: vacío o '/client'
+ * En GitHub Pages: '/animeaho-client/client'
+ */
+export const BASE_URL = '/animeaho-client/client';
+
+/**
  * Endpoints de la API pública de AnimeFlv
  * Proporciona acceso a información de animes, episodios y búsqueda
  */

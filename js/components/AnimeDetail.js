@@ -1,6 +1,7 @@
 // Renderiza detalles completos del anime (portada, sinópsis, géneros, episodios, etc.)
 
 import { renderEpisodesList, initializeEpisodeList, createEpisodeCard } from './EpisodeList.js';
+import { BASE_URL } from '../config/app.config.js';
 
 let domElementCache = {};
 let listEpisodes = [];
@@ -140,7 +141,7 @@ function renderGenreLinks(genreList) {
         const genreLink = document.createElement('a');
         genreLink.className = 'main__anime-genre';
         genreLink.textContent = genre.toUpperCase();
-        genreLink.href = `browse.html?genre=${genre.toLowerCase()}`;
+        genreLink.href = `${BASE_URL}/browse.html?genre=${genre.toLowerCase()}`;
         genreLink.title = `Ver animes del género ${genre}`;
 
         domElementCache.genres.appendChild(genreLink);
@@ -160,7 +161,7 @@ function renderRelatedAnimes(relatedAnimesList) {
         const link = document.createElement('a');
         link.className = 'main__anime-relation';
         link.textContent = `${relatedAnime.title} (${relatedAnime.relation})`;
-        link.href = `anime.html?slug=${relatedAnime.slug}`;
+        link.href = `${BASE_URL}/anime.html?slug=${relatedAnime.slug}`;
         link.title = `Ver ${relatedAnime.title}`;
 
         domElementCache.relations.appendChild(link);
