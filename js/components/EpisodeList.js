@@ -93,7 +93,14 @@ export function createEpisodeCard(episode, animeCoverUrl) {
     image.loading = 'lazy';
 
     image.onerror = () => {
-        container.style.display = 'none';
+        image.src = 'assets/images/broken_image.png';
+        image.style.width = '161px';
+        image.style.height = '140px';
+        image.style.objectFit = 'contain';
+        link.style.display = 'flex';
+        link.style.alignItems = 'center';
+        link.style.justifyContent = 'center';
+        link.style.backgroundColor = '#071e45';
     };
 
     link.appendChild(image);
