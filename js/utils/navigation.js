@@ -15,3 +15,13 @@ export function navigateToEpisode(episodeSlug) {
 export function navigateToAnimeDetail(slug) {
     window.location.href = `./anime.html?slug=${slug}`;
 }
+
+/**
+ * Navega a la página de detalle del anime.
+ *
+ * @param {string} name - Nombre del anime a buscar
+ */
+export function navigateToAnimeSearchList() {
+    const input = document.querySelector('.header__search-input');
+    window.location.href = `./search.html?query=${input.value}`;
+}

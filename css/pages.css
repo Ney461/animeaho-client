@@ -166,7 +166,26 @@ body {
     font-family: var(--font-body);
 }
 
-/* --- Nav --- */
+.header__search-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.header__search-more:hover {
+    background: var(--color-accent-alt);
+    border-radius: 5px;
+}
+    /* --- Nav --- */
 .header__nav {
     display: flex;
     gap: 32px;

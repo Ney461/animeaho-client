@@ -1,6 +1,8 @@
 // Maneja la renderización y lógica de la lista de episodios
 
+import { getEpisodeBySlug } from '../services/animeService.js';
 import { navigateToEpisode } from '../utils/navigation.js';
+import { extractSlugFromURL } from '../utils/urlParams.js';
 
 const EPISODE_COVER_BASE_URL = 'https://cdn.animeflv.net/screenshots';
 
@@ -92,7 +94,13 @@ export function createEpisodeCard(episode, animeCoverUrl) {
     image.alt = `Portada del episodio ${episode.number}`;
     image.loading = 'lazy';
 
-    image.onerror = () => {
+    image.onerror = async () => {
+        const exists = await existEpisode(episode.number);
+        if (!exists) {
+            container.remove();
+            return;
+        }
+
         image.src = 'assets/images/broken_image.png';
         image.style.width = '161px';
         image.style.height = '140px';
@@ -145,4 +153,16 @@ function attachEpisodeSortListener(animeCoverUrl) {
         const sortedEpisodes = getSortedEpisodes();
         renderEpisodes(sortedEpisodes, animeCoverUrl);
     });
+}
+
+async function existEpisode(number) {
+    const slug = `${extractSlugFromURL()}-${number}`;
+
+    const episodeData = await getEpisodeBySlug(slug);
+    if (episodeData.error){
+        return false;
+    } else {
+        return true;
+    }
+
 }

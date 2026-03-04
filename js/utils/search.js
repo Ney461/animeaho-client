@@ -1,5 +1,5 @@
 import { searchAnimeWithText } from "../services/animeService.js";
-import { renderDropdownItem } from "../components/SearchDropdownItem.js";
+import { hideDropdown, renderDropdown } from "../components/SearchDropdown.js";
 
 const dropdown = document.querySelector('.header__search-dropdown');
 let currentController = null;
@@ -46,26 +46,4 @@ async function searchAnime(value, input) {
     }
 
     renderDropdown(animesResponse.data.media);
-}
-
-/**
- * Renderiza los items del dropdown con los resultados de búsqueda.
- * Muestra un máximo de 5 resultados.
- * 
- * @param {Array} media - Lista de animes encontrados
- */
-function renderDropdown(media) {
-    dropdown.innerHTML = '';
-    const total = Math.min(5, media.length);
-    for (let i = 0; i < total; i++) {
-        dropdown.appendChild(renderDropdownItem(media[i]));
-    }
-    dropdown.style.display = 'block';
-}
-
-/**
- * Oculta el dropdown de búsqueda.
- */
-function hideDropdown() {
-    dropdown.style.display = 'none';
 }

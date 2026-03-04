@@ -46,7 +46,6 @@ function cacheDOM() {
  */
 export function renderAnimeDetail(animeData) {
     listEpisodes = animeData.episode;
-
     animeCover = animeData.cover;
 
     cacheDOM();

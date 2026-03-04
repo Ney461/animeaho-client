@@ -9,6 +9,7 @@ import { renderAnimeDetail } from '../components/AnimeDetail.js';
 import { getAnimeBySlug } from '../services/animeService.js';
 import { addListenerInput } from '../utils/search.js';
 import { handleAnimeNotFound, handleLoadError, handleMissingSlug } from '../utils/errorHandler.js';
+import { updatePageTitle, extractSlugFromURL } from '../utils/urlParams.js';
 
 /**
  * Inicializa la página de detalles del anime.
@@ -42,24 +43,4 @@ async function initializeAnimeDetailPage() {
         handleLoadError();
     }
 }
-
-/**
- * Extrae el parámetro slug de la URL actual (?slug=...).
- *
- * @returns {string|null} Slug del anime o null si no existe
- */
-export function extractSlugFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('slug');
-}
-
-/**
- * Actualiza el título de la pestaña del navegador.
- *
- * @param {string} animeTitle - Título del anime
- */
-function updatePageTitle(animeTitle) {
-    document.title = `AnimeAho - ${animeTitle}`;
-}
-
 document.addEventListener('DOMContentLoaded', initializeAnimeDetailPage);

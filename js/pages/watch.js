@@ -6,6 +6,7 @@ import { getEpisodeBySlugNumber } from '../services/animeService.js';
 import { addListenerInput } from '../utils/search.js';
 import { handleMissingSlug, handleEpisodeNotFound, handleLoadError } from '../utils/errorHandler.js'
 import { validateAndGetEpisodeSlug } from '../utils/validator.js'
+import { updatePageTitle, extractSlugFromURL } from '../utils/urlParams.js';
 
 /**
  * Inicializa la página de visualización: extrae el slug, carga el episodio
@@ -68,25 +69,6 @@ function parseEpisodeSlug(fullSlug) {
         animeSlug: match[1],
         episodeNumber: parseInt(match[2], 10)
     };
-}
-
-/**
- * Extrae el parámetro slug de la URL actual (?slug=...).
- *
- * @returns {string|null} Slug del episodio o null si no existe
- */
-function extractSlugFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('slug');
-}
-
-/**
- * Actualiza el título de la pestaña del navegador.
- *
- * @param {string} animeTitle - Título del anime
- */
-function updatePageTitle(animeTitle) {
-    document.title = `AnimeAho - ${animeTitle}`;
 }
 
 // Inicializar cuando el DOM está listo
