@@ -73,6 +73,8 @@ function renderEpisodes(episodesToRender, animeCoverUrl) {
 
 /**
  * Crea una tarjeta de episodio con portada y número.
+ * El card permanece oculto hasta que la imagen cargue correctamente.
+ * Si el episodio no existe, el card se elimina del DOM.
  *
  * @param {Object} episode - Datos del episodio
  * @param {number} episode.number - Número del episodio
@@ -83,16 +85,56 @@ function renderEpisodes(episodesToRender, animeCoverUrl) {
 export function createEpisodeCard(episode, animeCoverUrl) {
     const container = document.createElement('div');
     container.className = 'main__anime-episode';
+    container.style.display = 'none';
 
+    const link = createEpisodeLink(episode);
+    const image = createEpisodeImage(animeCoverUrl, episode, container, link);
+    const episodeNumber = createEpisodeNumber(episode.number);
+
+    link.appendChild(image);
+    container.appendChild(link);
+    container.appendChild(episodeNumber);
+
+    return container;
+}
+
+/**
+ * Crea el enlace del episodio con su listener de navegación.
+ *
+ * @param {Object} episode - Datos del episodio
+ * @returns {HTMLAnchorElement} Enlace del episodio
+ */
+function createEpisodeLink(episode) {
     const link = document.createElement('a');
     link.href = '#';
     link.setAttribute('title', `Ver episodio ${episode.number}`);
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        navigateToEpisode(episode.slug);
+    });
+    return link;
+}
 
+/**
+ * Crea la imagen del episodio con manejo de carga y error.
+ * Si hay error, verifica si el episodio existe antes de mostrar el fallback.
+ *
+ * @param {string} animeCoverUrl - URL de la portada del anime
+ * @param {Object} episode - Datos del episodio
+ * @param {HTMLElement} container - Contenedor del card
+ * @param {HTMLAnchorElement} link - Enlace del episodio
+ * @returns {HTMLImageElement} Imagen del episodio
+ */
+function createEpisodeImage(animeCoverUrl, episode, container, link) {
     const image = document.createElement('img');
     image.className = 'main__anime-episode-cover';
-    image.src = buildEpisodeCoverUrl(animeCoverUrl, episode.number);
     image.alt = `Portada del episodio ${episode.number}`;
-    image.loading = 'lazy';
+    
+    image.src = buildEpisodeCoverUrl(animeCoverUrl, episode.number);
+
+    image.onload = () => {
+        container.style.display = 'block';
+    };
 
     image.onerror = async () => {
         const exists = await existEpisode(episode.number);
@@ -100,32 +142,38 @@ export function createEpisodeCard(episode, animeCoverUrl) {
             container.remove();
             return;
         }
-
-        image.src = 'assets/images/broken_image.png';
-        image.style.width = '161px';
-        image.style.height = '140px';
-        image.style.objectFit = 'contain';
-        link.style.display = 'flex';
-        link.style.alignItems = 'center';
-        link.style.justifyContent = 'center';
-        link.style.backgroundColor = '#071e45';
+        applyFallbackImage(image, link);
+        container.style.display = 'block';
     };
 
-    link.appendChild(image);
+    return image;
+}
 
-    link.addEventListener('click', (event) => {
-        event.preventDefault();
-        navigateToEpisode(episode.slug);
-    });
+/**
+ * Aplica la imagen y estilos de fallback cuando la portada no está disponible.
+ *
+ * @param {HTMLImageElement} image - Elemento imagen
+ * @param {HTMLAnchorElement} link - Enlace contenedor de la imagen
+ */
+function applyFallbackImage(image, link) {
+    image.src = 'assets/images/broken_image.png';
+    image.style.width = '161px';
+    image.style.height = '140px';
+    image.style.objectFit = 'contain';
+    link.style.cssText = 'display:flex; align-items:center; justify-content:center; background-color:#071e45;';
+}
 
-    const episodeNumber = document.createElement('p');
-    episodeNumber.className = 'main__anime-episode-number';
-    episodeNumber.textContent = `Episodio ${episode.number}`;
-
-    container.appendChild(link);
-    container.appendChild(episodeNumber);
-
-    return container;
+/**
+ * Crea el elemento con el número del episodio.
+ *
+ * @param {number} number - Número del episodio
+ * @returns {HTMLParagraphElement} Párrafo con el número del episodio
+ */
+function createEpisodeNumber(number) {
+    const p = document.createElement('p');
+    p.className = 'main__anime-episode-number';
+    p.textContent = `Episodio ${number}`;
+    return p;
 }
 
 /**
