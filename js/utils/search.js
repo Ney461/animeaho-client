@@ -1,5 +1,6 @@
 import { searchAnimeWithText } from "../services/animeService.js";
 import { hideDropdown, renderDropdown } from "../components/SearchDropdown.js";
+import { navigateToAnimeSearchList } from "./navigation.js";
 
 const dropdown = document.querySelector('.header__search-dropdown');
 let currentController = null;
@@ -11,10 +12,12 @@ let currentController = null;
  */
 export function addListenerInput() {
     const input = document.querySelector('.header__search-input');
+    const button = document.querySelector('.header__search-link');
     input.addEventListener('input', () => searchAnime(input.value, input));
     input.addEventListener('blur', () => {
         setTimeout(() => hideDropdown(), 150);
     });
+    button.addEventListener('click', () => navigateToAnimeSearchList());
 }
 
 /**

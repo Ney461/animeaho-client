@@ -16,3 +16,13 @@ export function extractSlugFromURL() {
 export function updatePageTitle(animeTitle) {
     document.title = `AnimeAho - ${animeTitle}`;
 }
+
+/**
+ * Extrae el parámetro query de la URL actual (?query=...).
+ *
+ * @returns {string|null} Query del anime o null si no existe
+ */
+export function extractQueryFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('query');
+}
