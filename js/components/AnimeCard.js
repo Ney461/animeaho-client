@@ -3,7 +3,7 @@
 // Cada tarjeta muestra portada, título y un badge opcional.
 // Maneja navegación al detalle del anime o directamente a un episodio.
 
-import { navigateToAnimeDetail } from './AnimeLink.js';
+import { navigateToAnimeDetail, navigateToEpisode } from '../utils/navigation.js';
 
 /**
  * Crea una tarjeta de anime con portada, título y badge opcional.
@@ -67,13 +67,3 @@ function handleCardNavigation(slug, isDetailView) {
         navigateToEpisode(slug);
     }
 }
-
-/**
- * Navega a la página de reproducción del episodio.
- * 
- * @param {string} episodeSlug - Slug del episodio
- */
-export function navigateToEpisode(episodeSlug) {
-    window.location.href = `./watch.html?slug=${episodeSlug}`;
-}
-

@@ -1,6 +1,6 @@
 // Maneja la renderización y lógica de la lista de episodios
 
-import { navigateToEpisode } from './AnimeCard.js';
+import { navigateToEpisode } from '../utils/navigation.js';
 
 const EPISODE_COVER_BASE_URL = 'https://cdn.animeflv.net/screenshots';
 

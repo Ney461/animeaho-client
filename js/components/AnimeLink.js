@@ -1,5 +1,7 @@
 // Crea enlaces a animes en listas
 
+import { navigateToAnimeDetail } from "../utils/navigation.js";
+
 /**
  * Crea un item de lista con enlace al detalle del anime.
  *
@@ -24,13 +26,4 @@ export function createAnimeLinks(anime) {
 
     listItem.appendChild(link);
     return listItem;
-}
-
-/**
- * Navega a la página de detalle del anime.
- *
- * @param {string} slug - Slug del anime
- */
-export function navigateToAnimeDetail(slug) {
-    window.location.href = `./anime.html?slug=${slug}`;
 }

@@ -1,4 +1,4 @@
-import { navigateToAnimeDetail } from "./AnimeLink.js";
+import { navigateToAnimeDetail } from "../utils/navigation.js"
 
 /**
  * Crea un item del dropdown de búsqueda con portada y título del anime.
@@ -30,3 +30,4 @@ export function renderDropdownItem(anime) {
 
     return item;
 }
+

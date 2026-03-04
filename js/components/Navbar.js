@@ -1,4 +1,4 @@
-import { navigateToAnimeDetail } from './AnimeLink.js';
+import { navigateToAnimeDetail, navigateToEpisode } from '../utils/navigation.js';
 
 /**
  * Renderiza los botones de navegación entre episodios (anterior y siguiente).
@@ -55,15 +55,6 @@ function createNavigationButton(label, episodeSlug, direction) {
     });
     
     return button;
-}
-
-/**
- * Navega a la página de reproducción de un episodio.
- *
- * @param {string} episodeSlug - Slug del episodio destino
- */
-function navigateToEpisode(episodeSlug) {
-    window.location.href = `./watch.html?slug=${episodeSlug}`;
 }
 
 /**
