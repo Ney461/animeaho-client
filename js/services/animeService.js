@@ -134,11 +134,10 @@ export async function getLatestEpisodes() {
  *
  * @async
  * @param {string} searchQuery - Texto de búsqueda
- * @param {number} [page=1] - Número de página
  * @param {AbortSignal|null} [signal=null] - Signal para cancelar la petición
  * @returns {Promise<SearchAnimeResponse|ResponseError|undefined>}
  */
-export async function searchAnimeWithText(searchQuery, page = 1, signal = null) {
+export async function searchAnimeWithText(searchQuery, page, signal = null) {
     const params = new URLSearchParams({ query: searchQuery, page });
     const endpoint = `${ANIME_API_BASE_URL}${ANIME_ENDPOINTS.SEARCH_ANIME}?${params}`;
     try {

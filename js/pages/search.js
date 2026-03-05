@@ -11,8 +11,8 @@ async function initializeAnimeSearchPage() {
     try {
         addListenerInput();
         
-        const query = extractQueryFromURL();
-        const animes = await searchAnimeWithText(query);
+        const {query, page} = extractQueryFromURL();
+        const animes = await searchAnimeWithText(query, page);
 
         totalPages = animes.data.foundPages;
         

@@ -18,13 +18,13 @@ export function updatePageTitle(animeTitle) {
 }
 
 /**
- * Extrae el parámetro query de la URL actual (?query=...).
+ * Extrae los parámetros query y page de la URL actual.
  *
- * @returns {string|null} Query del anime o null si no existe
+ * @returns {{ query: string|null, page: number|1 }} Parámetros de la URL
  */
 export function extractQueryFromURL() {
     const params = new URLSearchParams(window.location.search);
     const query = params.get('query');
-    const page = params.get('page');
-    return { query: query, page: page };
+    const page = Number(params.get('page')) || 1;
+    return { query, page };
 }
