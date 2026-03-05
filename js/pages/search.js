@@ -28,7 +28,7 @@ async function initializeAnimeSearchPage() {
         });
 
         for (let i = 1; i < animes.data.currentPage; i ++) {
-            render
+            
         }
 
     } catch (error) {

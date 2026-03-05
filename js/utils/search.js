@@ -18,7 +18,7 @@ export function addListenerInput() {
         setTimeout(() => hideDropdown(), 150);
     });
     button.addEventListener('click', () => {
-        if (!input.value.length == 0) navigateToAnimeSearchList();
+        if (!input.value.length == 0) navigateToAnimeSearchList(1);
     });
 }
 

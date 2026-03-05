@@ -21,7 +21,7 @@ export function renderDropdown(media) {
         button.className = 'header__search-more'
         button.textContent = 'Ver más'
         
-        button.addEventListener('click', () => navigateToAnimeSearchList())
+        button.addEventListener('click', () => navigateToAnimeSearchList(1))
 
         dropdown.appendChild(button)
 

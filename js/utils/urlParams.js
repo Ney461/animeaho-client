@@ -24,5 +24,7 @@ export function updatePageTitle(animeTitle) {
  */
 export function extractQueryFromURL() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('query');
+    const query = params.get('query');
+    const page = params.get('page');
+    return { query: query, page: page };
 }

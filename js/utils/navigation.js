@@ -19,9 +19,9 @@ export function navigateToAnimeDetail(slug) {
 /**
  * Navega a la página de detalle del anime.
  *
- * @param {string} name - Nombre del anime a buscar
+ * @param {number} page - Número de la página
  */
-export function navigateToAnimeSearchList() {
+export function navigateToAnimeSearchList(page) {
     const input = document.querySelector('.header__search-input');
-    window.location.href = `./search.html?query=${input.value}`;
+    window.location.href = `./search.html?query=${input.value}&page=${page}`;
 }
