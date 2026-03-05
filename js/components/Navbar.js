@@ -13,12 +13,12 @@ export function renderEpisodeNavigation(prevEpisodeSlug, nextEpisodeSlug, domEle
     domElementCache.navigationButtons.innerHTML = '';
     
     if (prevEpisodeSlug) {
-        const prevButton = createNavigationButton('Episodio anterior', prevEpisodeSlug, 'prev');
+        const prevButton = renderNavigationEpisodeBtn('Episodio anterior', prevEpisodeSlug, 'prev');
         domElementCache.navigationButtons.appendChild(prevButton);
     }
 
     if (nextEpisodeSlug) {
-        const nextButton = createNavigationButton('Episodio siguiente', nextEpisodeSlug, 'next');
+        const nextButton = renderNavigationEpisodeBtn('Episodio siguiente', nextEpisodeSlug, 'next');
         domElementCache.navigationButtons.appendChild(nextButton);
     }
 }
@@ -31,7 +31,7 @@ export function renderEpisodeNavigation(prevEpisodeSlug, nextEpisodeSlug, domEle
  * @param {'prev'|'next'} direction - Dirección de navegación
  * @returns {HTMLButtonElement} Botón listo para insertar en el DOM
  */
-function createNavigationButton(label, episodeSlug, direction) {
+function renderNavigationEpisodeBtn(label, episodeSlug, direction) {
     const button = document.createElement('button');
     button.className = `main__nav-btn main__nav-btn--${direction}`;
     
@@ -46,7 +46,6 @@ function createNavigationButton(label, episodeSlug, direction) {
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m600-200-57-56 184-184H80v-80h647L544-704l56-56 280 280-280 280Z"/></svg>
         `;
         }
-
 
     button.setAttribute('aria-label', `Ir a ${label.toLowerCase()}`);
     
@@ -79,4 +78,17 @@ export function renderReturnButton(animeSlug, domElementCache) {
     });
     
     domElementCache.backButton.appendChild(button);
+}
+
+export function renderPreviousPageBtn() {
+
+}
+
+
+function renderFirstPageBtn() {
+    
+}
+
+function renderLastPageBtn() {
+
 }
