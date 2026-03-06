@@ -460,7 +460,8 @@
     }
 
     #search-animes.main__animes-container {
-        grid-template-columns: 1fr;
+        /* always show at least two columns on mobile views */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .main__episodes-controls {
