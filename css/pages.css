@@ -30,6 +30,9 @@ body {
     font-family: var(--font-body);
     background-color: var(--color-bg);
     color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ============= SCROLLBAR ============= */
@@ -230,13 +233,15 @@ body {
 
 .main {
     background-color: var(--color-bg);
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    flex: 1;
 }
 
 .main__inner {
     max-width: 1800px;
     margin: 0 auto;
     padding: 2rem 32px;
+    height: 100%;
 }
 
 /* ============= FOOTER ============= */

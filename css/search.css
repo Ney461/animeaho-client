@@ -1,10 +1,24 @@
+/* search.css */
 :root {
     --sidebar-width: 320px;
-    --card-width:    175px;
+    --card-width:    130px;
     --card-gap:      20px;
-
+    --grid-cols:     6;
 }
 
+.main__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
 /* ============= GRIDS ============= */
 
 .main__animes-container {
@@ -13,8 +27,10 @@
 }
 
 #search-animes.main__animes-container {
-    grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
     gap: var(--card-gap);
+    width: 60%;
+    margin: 0 auto;
 }
 
 /* ============= CARDS ============= */
@@ -23,6 +39,7 @@
     display: flex;
     flex-direction: column;
     gap: 7px;
+    min-width: 0;
 }
 
 .anime-card__a {
@@ -67,15 +84,15 @@
     filter: brightness(1.08);
 }
 
-#latest-animes .anime-card__image {
+.header__search-dropdown-item {
     aspect-ratio: 2 / 3;
 }
 
-#latest-episodes .anime-card__a {
-    height: var(--ep-card-height);
+#search-animes .anime-card__image {
+    aspect-ratio: 2 / 3;
 }
 
-#latest-episodes .anime-card__image {
+.anime-card__image {
     width: 100%;
     height: 100%;
     aspect-ratio: unset;
@@ -108,4 +125,76 @@
     pointer-events: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
     z-index: 1;
+}
+
+
+/* ============= NAVIGATION BUTTOMS ============= */
+.main__pagination {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    gap: 10px;
+}
+
+.main__pagination-btn {
+    padding: 5px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-card);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 8px;
+    white-space: nowrap;
+    min-width: 50px;
+    user-select: none;
+}
+
+.main__pagination-btn:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+    box-shadow: 0 4px 12px rgba(26, 107, 196, 0.3);
+    transform: translateY(-2px);
+}
+
+.main__pagination-btn:active {
+    transform: translateY(0);
+}
+
+.main__pagination-btn--active {
+    padding: 5px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-accent);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 8px;
+    white-space: nowrap;
+    min-width: 50px;
+}
+
+.main__pagination-btn--disabled,
+.main__pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    color: var(--color-text);
+    transform: none;
+    box-shadow: none;
+    pointer-events: none;
 }

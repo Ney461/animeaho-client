@@ -17,9 +17,16 @@ export function addListenerInput() {
     input.addEventListener('blur', () => {
         setTimeout(() => hideDropdown(), 150);
     });
+    input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        navigateToAnimeSearchList(1);
+    }
+
     button.addEventListener('click', () => {
         if (!input.value.length == 0) navigateToAnimeSearchList(1);
     });
+
+});
 }
 
 /**

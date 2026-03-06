@@ -118,37 +118,6 @@
     justify-content: center; 
 }
 
-/* ============= BOTONES DE NAVEGACIÓN ============= */
-
-@media (max-width: 1150px) {
-    .main__inner {
-        display: flex;
-        flex-direction: column;
-        place-items: center;
-    }
-}
-
-@media (max-width: 900px) {
-    .main__controls-nav,
-    .main__controls-back {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    .main__controls-nav .main__nav-btn,
-    .main__controls-back .main__back-btn {
-        flex: 1 1 100%;
-        min-width: unset;
-    }
-}
-
-@media (max-width: 640px) {
-    .main__controls-nav .main__nav-btn,
-    .main__controls-back .main__back-btn {
-        width: 100%;
-    }
-}
-
-
 .main__nav-btn,
 .main__back-btn {
     padding: 12px 24px;

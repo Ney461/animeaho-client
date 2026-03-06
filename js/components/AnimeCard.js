@@ -5,6 +5,14 @@
 
 import { navigateToAnimeDetail, navigateToEpisode } from '../utils/navigation.js';
 
+export function renderAnimeCards(animes, container) {
+    const fragment = document.createDocumentFragment();
+    animes.forEach(anime => {
+        fragment.appendChild(renderAnimeCard(anime, anime.type, true));
+    });
+    container.appendChild(fragment);
+}
+
 /**
  * Crea una tarjeta de anime con portada, título y badge opcional.
  * 
@@ -13,7 +21,7 @@ import { navigateToAnimeDetail, navigateToEpisode } from '../utils/navigation.js
  * @param {boolean} isDetailView - true = navega al detalle | false = navega al episodio
  * @returns {HTMLElement} Tarjeta lista para insertar en el DOM
  */
-export function createAnimeCard(anime, badgeText = null, isDetailView = true) {
+export function renderAnimeCard(anime, badgeText = null, isDetailView = true) {
     const article = document.createElement('article');
     article.className = 'anime-card';
     article.setAttribute('data-anime-slug', anime.slug);

@@ -21,7 +21,11 @@ export function navigateToAnimeDetail(slug) {
  *
  * @param {number} page - Número de la página
  */
-export function navigateToAnimeSearchList(page) {
-    const input = document.querySelector('.header__search-input');
-    window.location.href = `./search.html?query=${input.value}&page=${page}`;
+export function navigateToAnimeSearchList(page, query, ) {
+    if (query) {
+        window.location.href = `./search.html?query=${query}&page=${page}`;
+    } else {
+        const input = document.querySelector('.header__search-input');
+        window.location.href = `./search.html?query=${input.value}&page=${page}`;
+    }
 }

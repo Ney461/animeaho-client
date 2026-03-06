@@ -5,7 +5,7 @@ import {
     getLatestEpisodes,
     searchAnimeFilter,
 } from '../services/animeService.js';
-import { createAnimeCard } from '../components/AnimeCard.js';
+import { renderAnimeCard } from '../components/AnimeCard.js';
 import { createAnimeLinks } from '../components/AnimeLink.js';
 import { addListenerInput } from '../utils/search.js';
 import { displayErrorMessage } from '../utils/errorHandler.js';
@@ -81,7 +81,7 @@ async function loadLatestEpisodes() {
         }
 
         response.data.forEach(episode => {
-            const episodeCard = createAnimeCard(
+            const episodeCard = renderAnimeCard(
                 episode,
                 `Episodio: ${episode.number}`,
                 false
@@ -124,7 +124,7 @@ async function loadLatestAnimes() {
         }
 
         response.data.media.forEach(anime => {
-            const animeCard = createAnimeCard(
+            const animeCard = renderAnimeCard(
                 anime,
                 anime.type,
                 true
