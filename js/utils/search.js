@@ -1,5 +1,5 @@
 import { searchAnimeWithText } from "../services/animeService.js";
-import { hideDropdown, renderDropdown } from "../components/SearchDropdown.js";
+import { hideDropdown, renderDropdownSearch } from "../components/SearchDropdown.js";
 import { navigateToAnimeSearchList } from "./navigation.js";
 
 const dropdown = document.querySelector('.header__search-dropdown');
@@ -57,5 +57,5 @@ async function searchAnime(value, input) {
         return;
     }
 
-    renderDropdown(animesResponse.data.media);
+    renderDropdownSearch(animesResponse.data.media);
 }

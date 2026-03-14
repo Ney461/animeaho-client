@@ -39,6 +39,11 @@
     #search-animes.main__animes-container {
         grid-template-columns: repeat(5, 1fr);
     }
+
+    /* Browse filters responsive */
+    .main__section-filters {
+        gap: 30px;
+    }
 }
 
 /* ============= DESKTOP CHICO / TABLET GRANDE (1150px) ============= */
@@ -70,6 +75,11 @@
 
     #search-animes.main__animes-container {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Browse filters responsive */
+    .main__section-filters {
+        gap: 25px;
     }
 }
 
@@ -232,6 +242,19 @@
     .main__episodes-scroll {
         max-height: 400px;
     }
+
+    /* Browse filters responsive */
+    .main__section-filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .main__section-filters__dropdown {
+        width: 100%;
+        max-height: 300px;
+    }
 }
 
 /* ============= MOBILE GRANDE (640px) ============= */
@@ -369,6 +392,25 @@
     .main__pagination {
         gap: 6px;
     }
+
+    /* Browse filters responsive */
+    .main__section-filters {
+        gap: 10px;
+        padding-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main__section-filters__button,
+    .main__section-filters__search-button {
+        font-size: 13px;
+        padding: 3px 6px;
+    }
+
+    .main__section-filters__dropdown {
+        max-height: 200px;
+        padding: 3px;
+    }
 }
 
 /* ============= MOBILE CHICO (420‑520px) ============= */
@@ -384,6 +426,25 @@
 
     .header__inner {
         padding: 8px 12px;
+    }
+
+    /* Browse filters responsive */
+    .main__section-filters {
+        gap: 8px;
+        padding-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main__section-filters__button,
+    .main__section-filters__search-button {
+        font-size: 12px;
+        padding: 2px 4px;
+    }
+
+    .main__section-filters__dropdown {
+        max-height: 180px;
+        padding: 2px;
     }
 }
 
@@ -525,6 +586,25 @@
     .main__anime-stars {
         gap: 0.3rem;
     }
+
+    /* Browse filters responsive */
+    .main__section-filters {
+        gap: 15px;
+        padding-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main__section-filters__button,
+    .main__section-filters__search-button {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+
+    .main__section-filters__dropdown {
+        max-height: 250px;
+        padding: 4px;
+    }
 }
 
 /* ============= MOBILE MUY CHICO (360px) ============= */
@@ -599,5 +679,24 @@
 
     .main__anime-rating-label {
         font-size: 0.75rem;
+    }
+
+    /* Browse filters responsive */
+    .main__section-filters {
+        gap: 6px;
+        padding-top: 6px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main__section-filters__button,
+    .main__section-filters__search-button {
+        font-size: 11px;
+        padding: 2px 3px;
+    }
+
+    .main__section-filters__dropdown {
+        max-height: 150px;
+        padding: 2px;
     }
 }

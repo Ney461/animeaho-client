@@ -1,4 +1,12 @@
-const ANIME_GENRES = {
+export const ORDER = {
+    'default': 'Por Defecto',
+    'updated': 'Actualizado',
+    'added': 'Añadido',
+    'title': 'Título',
+    'rating': 'Clasificación'
+}
+
+export const ANIME_GENRES = {
     'accion': 'Acción',
     'artes-marciales': 'Artes Marciales',
     'aventura': 'Aventura',
@@ -41,38 +49,15 @@ const ANIME_GENRES = {
     'yuri': 'Yuri'
 }
 
-const ORDER = {
-    'default': 'Por Defecto',
-    'updated': 'Actualizado',
-    'added': 'Añadido',
-    'title': 'Título',
-    'rating': 'Clasificación'
-}
-
-const STATUSES = {
+export const STATUSES = {
     1: 'En Emisión',
     2: 'Finalizado',
     3: 'Próximamente'
 }
 
-const TYPES = {
+export const TYPES = {
     'tv': 'TV',
     'movie': 'Película',
     'special': 'Especial',
     'ova': 'OVA'
 }
-
-const ITEMS_PER_PAGE = 20
-
-const VIDEO_SERVERS = [
-    'SW', 
-    'MEGA',
-    'YourUpload',
-    'Okru',
-    'Maru',
-    'Fembed',
-    'Netu',
-    'Stape',
-    '1Fichier',
-    'Zippyshare'
-]

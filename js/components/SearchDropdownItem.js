@@ -9,7 +9,7 @@ import { navigateToAnimeDetail } from "../utils/navigation.js"
  * @param {string} anime.slug - Slug del anime
  * @returns {HTMLElement} Item listo para insertar en el dropdown
  */
-export function renderDropdownItem(anime) {
+export function renderDropdownSearchItem(anime) {
     const item = document.createElement('div');
     const link = document.createElement('a');
     const cover = document.createElement('img');

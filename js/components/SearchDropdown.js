@@ -1,4 +1,4 @@
-import { renderDropdownItem } from "../components/SearchDropdownItem.js";
+import { renderDropdownSearchItem } from "../components/SearchDropdownItem.js";
 import { navigateToAnimeSearchList } from "../utils/navigation.js";
 
 const dropdown = document.querySelector('.header__search-dropdown');
@@ -9,11 +9,11 @@ const dropdown = document.querySelector('.header__search-dropdown');
  * 
  * @param {Array} media - Lista de animes encontrados
  */
-export function renderDropdown(media) {
+export function renderDropdownSearch(media) {
     dropdown.innerHTML = '';
     const total = Math.min(5, media.length);
     for (let i = 0; i < total; i++) {
-        dropdown.appendChild(renderDropdownItem(media[i]));
+        dropdown.appendChild(renderDropdownSearchItem(media[i]));
     }
 
     if (media.length > 5) {
