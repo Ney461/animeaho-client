@@ -1,12 +1,12 @@
-.main__section-filters {
+.filters {
     display: flex;
     align-items: center;
     gap: 40px;
     padding-top: 20px;
 }
 
-.main__section-filters__button,
-.main__section-filters__search-button {
+.filters__button,
+.filters__search-button {
     display: flex;
     align-items: center;
     background-color: var(--color-accent);
@@ -20,7 +20,7 @@
     cursor: pointer;
 }
 
-.main__section-filters__dropdown {
+.filters__dropdown {
     position: absolute;
     top: 110%;
     left: 0;

@@ -1,6 +1,7 @@
 import { renderDropdownFilter } from "../components/FilterDropdown.js";
 import { ANIME_GENRES, ORDER, STATUSES, TYPES } from "../config/constants.js";
 import { addListenerInput } from "../utils/search.js";
+import { displayErrorMessage } from "../utils/errorHandler.js";
 
 async function initializeAnimeBrowsePage() {
     try {
@@ -13,7 +14,7 @@ async function initializeAnimeBrowsePage() {
 }
 
 function addListenerButtonFilter() {
-    const filterContainer = document.querySelector('.main__section-filters');
+    const filterContainer = document.querySelector('.filters');
 
     filterContainer.addEventListener('click', (e) => {
         if (e.target.tagName === "BUTTON") {

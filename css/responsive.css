@@ -41,7 +41,7 @@
     }
 
     /* Browse filters responsive */
-    .main__section-filters {
+    .filters {
         gap: 30px;
     }
 }
@@ -78,7 +78,7 @@
     }
 
     /* Browse filters responsive */
-    .main__section-filters {
+    .filters {
         gap: 25px;
     }
 }
@@ -244,14 +244,14 @@
     }
 
     /* Browse filters responsive */
-    .main__section-filters {
+    .filters {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
     }
 
-    .main__section-filters__dropdown {
+    .filters__dropdown {
         width: 100%;
         max-height: 300px;
     }
@@ -394,20 +394,20 @@
     }
 
     /* Browse filters responsive */
-    .main__section-filters {
+    .filters {
         gap: 10px;
         padding-top: 10px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .main__section-filters__button,
-    .main__section-filters__search-button {
+    .filters__button,
+    .filters__search-button {
         font-size: 13px;
         padding: 3px 6px;
     }
 
-    .main__section-filters__dropdown {
+    .filters__dropdown {
         max-height: 200px;
         padding: 3px;
     }
@@ -429,20 +429,20 @@
     }
 
     /* Browse filters responsive */
-    .main__section-filters {
+    .filters {
         gap: 8px;
         padding-top: 8px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .main__section-filters__button,
-    .main__section-filters__search-button {
+    .filters__button,
+    .filters__search-button {
         font-size: 12px;
         padding: 2px 4px;
     }
 
-    .main__section-filters__dropdown {
+    .filters__dropdown {
         max-height: 180px;
         padding: 2px;
     }
@@ -588,20 +588,20 @@
     }
 
     /* Browse filters responsive */
-    .main__section-filters {
+    .filters {
         gap: 15px;
         padding-top: 15px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .main__section-filters__button,
-    .main__section-filters__search-button {
+    .filters__button,
+    .filters__search-button {
         font-size: 14px;
         padding: 4px 8px;
     }
 
-    .main__section-filters__dropdown {
+    .filters__dropdown {
         max-height: 250px;
         padding: 4px;
     }
@@ -682,20 +682,20 @@
     }
 
     /* Browse filters responsive */
-    .main__section-filters {
+    .filters {
         gap: 6px;
         padding-top: 6px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .main__section-filters__button,
-    .main__section-filters__search-button {
+    .filters__button,
+    .filters__search-button {
         font-size: 11px;
         padding: 2px 3px;
     }
 
-    .main__section-filters__dropdown {
+    .filters__dropdown {
         max-height: 150px;
         padding: 2px;
     }
