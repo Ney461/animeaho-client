@@ -9,7 +9,7 @@ export const ORDER = {
 export const ANIME_GENRES = {
     'accion': 'Acción',
     'artes-marciales': 'Artes Marciales',
-    'aventura': 'Aventura',
+    'aventura': 'Aventuras',
     'carreras': 'Carreras',
     'ciencia-ficcion': 'Ciencia Ficción',
     'comedia': 'Comedia',

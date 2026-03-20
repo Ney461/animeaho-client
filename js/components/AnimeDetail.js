@@ -1,5 +1,6 @@
 // Renderiza detalles completos del anime (portada, sinópsis, géneros, episodios, etc.)
 
+import { ANIME_GENRES } from '../config/constants.js';
 import { renderEpisodesList, initializeEpisodeList, createEpisodeCard } from './EpisodeList.js';
 
 let domElementCache = {};
@@ -138,12 +139,25 @@ function renderGenreLinks(genreList) {
     genreList.forEach(genre => {
         const genreLink = document.createElement('a');
         genreLink.className = 'main__anime-genre';
+
+        const key = getKeyAnimeGenre(genre);
+
         genreLink.textContent = genre.toUpperCase();
-        genreLink.href = `./browse.html?genre=${genre.toLowerCase()}`;
+        genreLink.href = `./browse.html?genre=${key}`;
         genreLink.title = `Ver animes del género ${genre}`;
 
         domElementCache.genres.appendChild(genreLink);
     });
+}
+
+/**
+ * Busca la clave en ANIME_GENRES que corresponde al valor dado
+ * @param {string} value - El nombre del género a buscar
+ * @returns {string|null} La clave asociada al valor dado, o null en caso de que no la encuentre
+ */
+function getKeyAnimeGenre(value) {
+    const key = Object.keys(ANIME_GENRES).find(key => ANIME_GENRES[key] === value);
+    return key ?? null;
 }
 
 /**
