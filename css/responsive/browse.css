@@ -1,0 +1,133 @@
+/* responsive/browse.css - Media queries responsivas para browse.html */
+
+/* ============= BASE RESPONSIVE ============= */
+
+#latest-episodes.main__animes-container {
+    grid-template-columns: repeat(auto-fill, minmax(var(--ep-card-width), 1fr));
+}
+
+#latest-episodes .anime-card {
+    width: 100%;
+}
+
+#latest-episodes .anime-card__a {
+    width: 100%;
+}
+
+/* ============= DESKTOP MEDIANO (1400px) ============= */
+
+@media (max-width: 1400px) {
+    :root {
+        --card-width:    160px;
+        --ep-card-width: 200px;
+    }
+
+    /* Browse filters responsive */
+    .filters {
+        gap: 30px;
+    }
+}
+
+/* ============= DESKTOP CHICO / TABLET GRANDE (1150px) ============= */
+
+@media (max-width: 1150px) {
+    :root {
+        --card-width:    150px;
+        --ep-card-width: 185px;
+        --ep-card-height: 125px;
+    }
+
+    /* Browse filters responsive */
+    .filters {
+        gap: 25px;
+    }
+}
+
+/* ============= TABLET (900px) ============= */
+
+@media (max-width: 900px) {
+    :root {
+        --card-width:     145px;
+        --ep-card-width:  170px;
+        --ep-card-height: 115px;
+    }
+
+    /* Browse filters responsive */
+    .filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .filters__dropdown {
+        width: 100%;
+        max-height: 300px;
+    }
+}
+
+/* ============= MOBILE GRANDE (640px) ============= */
+
+@media (max-width: 640px) {
+    :root {
+        --card-width:     130px;
+        --ep-card-width:  150px;
+        --ep-card-height: 100px;
+        --card-gap:       10px;
+        --ep-gap:         10px;
+    }
+}
+
+/* ============= TINY (520px) ============= */
+
+@media (max-width: 521px) {
+    /* Browse filters responsive */
+    .filters {
+        gap: 10px;
+        padding-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filters__button,
+    .filters__search-button {
+        font-size: 13px;
+        padding: 3px 6px;
+    }
+
+    .filters__dropdown {
+        max-height: 200px;
+        padding: 3px;
+    }
+}
+
+/* ============= MOBILE CHICO (420‑520px) ============= */
+
+@media (max-width: 521px) {
+    :root {
+        --card-width:     120px;
+        --ep-card-width:  140px;
+        --ep-card-height: 92px;
+        --card-gap:       8px;
+        --ep-gap:         8px;
+    }
+
+    /* Browse filters responsive */
+    .filters {
+        gap: 8px;
+        padding-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filters__button,
+    .filters__search-button {
+        font-size: 12px;
+        padding: 2px 4px;
+    }
+
+    .filters__dropdown {
+        max-height: 180px;
+        padding: 2px;
+    }
+}

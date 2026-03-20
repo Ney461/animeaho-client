@@ -47,7 +47,7 @@ body {
 .header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 100; /* z-index controla la superposición, aquí mantiene el header encima del contenido */
     background-color: var(--color-header);
     border-bottom: 1px solid var(--color-border);
     box-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
@@ -78,7 +78,7 @@ body {
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.06);
-    overflow: visible;
+    overflow: visible; /* permite que el dropdown se muestre fuera del contenedor principal */
     transition: border-color 0.2s, box-shadow 0.2s;
     flex: 0 1 380px;
     border-radius: 5px;
@@ -133,9 +133,9 @@ body {
     background: var(--color-header);
     border: 1px solid var(--color-border);
     border-radius: 5px;
-    z-index: 999;
+    z-index: 999; /* mantiene el dropdown en la parte superior de otros elementos */
     max-height: 400px;
-    overflow-y: auto;
+    overflow-y: auto; /* scroll vertical cuando la lista crece mucho */
     padding: 5px;
     display: none;
 }

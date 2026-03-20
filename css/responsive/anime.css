@@ -1,0 +1,129 @@
+/* responsive/anime.css - Media queries responsivas para anime.html */
+
+/* ============= DESKTOP CHICO / TABLET GRANDE (1150px) ============= */
+
+@media (max-width: 1150px) {
+    .main__episodes-controls {
+        flex-wrap: wrap;
+    }
+}
+
+/* ============= TABLET (900px) ============= */
+
+@media (max-width: 900px) {
+    .main__anime-aside {
+        grid-column: 1;
+        grid-row: auto;
+        order: -1 !important;
+        width: auto !important;         
+        max-width: 300px !important;    
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        justify-self: center !important; 
+        margin: 0 auto !important;      
+    }
+
+    .main__anime-info {
+        grid-column: 1;
+    }
+
+    .main__anime-episodes {
+        grid-column: 1;
+        display: block !important;         
+        width: 100% !important;            
+        justify-self: stretch !important;   
+        margin: 0 !important;               
+        max-width: none !important;         
+        align-self: stretch !important;     
+    }
+
+    .main__anime-list {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .main__episodes-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    .main__episodes-select {
+        width: 100%;
+    }
+
+    .main__episodes-scroll {
+        max-height: 400px;
+    }
+}
+
+/* ============= MOBILE GRANDE (640px) ============= */
+
+@media (max-width: 640px) {
+    /* Anime detail */
+    .main__anime-title {
+        font-size: 1.4rem;
+    }
+
+    .main__anime-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .main__episodes-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .main__episodes-select {
+        width: 100%;
+    }
+}
+
+/* ============= TINY (520px) ============= */
+
+@media (max-width: 521px) {
+    .main__episodes-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    .main__episodes-left,
+    .main__episodes-search-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    .main__episodes-select,
+    .main__episodes-search-btn,
+    .main__episodes-refresh-btn,
+    .main__episodes-search-input {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .main__episodes-select {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .main__episodes-select option {
+        white-space: normal;
+    }
+
+    .main__episodes-search-input {
+        min-width: unset !important;
+    }
+
+    .main__episodes-search-btn,
+    .main__episodes-refresh-btn {
+        justify-content: center;
+    }
+}

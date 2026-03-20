@@ -1,0 +1,157 @@
+/* responsive/components.css - Media queries responsivas para componentes compartidos */
+
+/* ============= TABLET (900px) ============= */
+
+@media (max-width: 900px) {
+    .header__inner {
+        flex-wrap: wrap;
+        padding: 10px 20px;
+        gap: 10px;
+    }
+
+    .header__search {
+        order: 3;
+        flex: 1 1 100%;
+    }
+
+    .header__search input {
+        width: 100%;
+    }
+
+    .header__search-dropdown {
+        width: 100%;
+        left: 0;
+    }
+
+    .header__search-dropdown-item a {
+        height: 80px;
+        gap: 14px;
+    }
+
+    .header__logo {
+        width: 150px;
+    }
+
+    .main__inner {
+        flex-direction: column;
+        padding: 1.2rem 20px;
+    }
+
+    .main .main__inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main__sidebar {
+        width: 100%;
+        min-width: unset;
+        position: static;
+        max-height: 180px;
+        padding-right: 0;
+        padding-bottom: 12px;
+        padding-top: 0;
+        /* overflow-x: auto; - Permite scroll horizontal para elementos largos */
+        /* overflow-y: hidden; - Oculta scroll vertical innecesario */
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .main__airing-list {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 6px;
+    }
+
+    .main__airing-list li {
+        flex-shrink: 0;
+        background-color: rgba(26, 107, 196, 0.1);
+        border: 1px solid var(--color-border);
+        border-radius: 20px;
+    }
+
+    .main__airing-list a,
+    .anime-link {
+        padding: 5px 14px;
+        font-size: 0.82rem;
+        border-left: none !important;
+        border-radius: 20px;
+        white-space: nowrap;
+    }
+
+    .main__airing-list a:hover,
+    .anime-link:hover {
+        padding-left: 14px !important;
+        border-left: none !important;
+    }
+
+    .main__content {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .anime-page .main__inner,
+    .main__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .anime-page .main__inner {
+        display: grid !important;
+    }
+
+    .main .main__inner,
+    .anime-page .main__inner {
+        display: flex !important;
+        flex-direction: column;
+    }
+}
+
+/* ============= MOBILE GRANDE (640px) ============= */
+
+@media (max-width: 640px) {
+    .header__inner {
+        padding: 10px 14px;
+    }
+
+    .header__logo {
+        width: 130px;
+    }
+
+    .header__search-dropdown-item a {
+        height: 70px;
+        gap: 12px;
+        padding: 6px 10px;
+    }
+
+    .header__search-dropdown-item span {
+        font-size: 0.82rem;
+    }
+
+    .header__nav {
+        gap: 20px;
+    }
+
+    .header__nav a {
+        font-size: 0.85rem;
+    }
+
+    .main__inner {
+        padding: 1rem 14px;
+    }
+
+    .footer__inner {
+        padding: 16px 14px;
+        text-align: center;
+    }
+}
+
+/* ============= TINY (520px) ============= */
+
+/* ============= MOBILE CHICO (420‑520px) ============= */
+
+@media (max-width: 521px) {
+    .header__inner {
+        padding: 8px 12px;
+    }
+}

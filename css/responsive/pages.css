@@ -1,0 +1,90 @@
+/* responsive/pages.css - Media queries responsivas generales para páginas */
+
+/* ============= DESKTOP MEDIANO (1400px) ============= */
+
+@media (max-width: 1400px) {
+    :root {
+        --card-width:    160px;
+        --ep-card-width: 200px;
+    }
+}
+
+/* ============= DESKTOP CHICO / TABLET GRANDE (1150px) ============= */
+
+@media (max-width: 1150px) {
+    :root {
+        --sidebar-width: 260px;
+        --card-width:    150px;
+        --ep-card-width: 185px;
+        --ep-card-height: 125px;
+    }
+
+    .header__search {
+        flex: 0 1 260px;
+    }
+
+    .main__inner {
+        grid-template-columns: 200px 1fr;
+    }
+}
+
+/* ============= TABLET (900px) ============= */
+
+@media (max-width: 900px) {
+    :root {
+        --card-width:     145px;
+        --ep-card-width:  170px;
+        --ep-card-height: 115px;
+    }
+
+    .main__inner {
+        flex-direction: column;
+        padding: 1.2rem 20px;
+    }
+
+    .main .main__inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .anime-page .main__inner,
+    .main__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .anime-page .main__inner {
+        display: grid !important;
+    }
+
+    .main .main__inner,
+    .anime-page .main__inner {
+        display: flex !important;
+        flex-direction: column;
+    }
+}
+
+/* ============= MOBILE GRANDE (640px) ============= */
+
+@media (max-width: 640px) {
+    :root {
+        --card-width:     130px;
+        --ep-card-width:  150px;
+        --ep-card-height: 100px;
+        --card-gap:       10px;
+        --ep-gap:         10px;
+    }
+}
+
+/* ============= TINY (520px) ============= */
+
+/* ============= MOBILE CHICO (420‑520px) ============= */
+
+@media (max-width: 521px) {
+    :root {
+        --card-width:     120px;
+        --ep-card-width:  140px;
+        --ep-card-height: 92px;
+        --card-gap:       8px;
+        --ep-gap:         8px;
+    }
+}

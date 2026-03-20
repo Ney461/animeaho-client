@@ -1,0 +1,37 @@
+/* responsive/watch.css - Media queries responsivas para watch.html */
+
+/* ============= DESKTOP CHICO / TABLET GRANDE (1150px) ============= */
+
+@media (max-width: 1150px) {
+    .main__inner {
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        padding: 0 14px; /* agrega espacio interior para el iframe y evita que quede pegado al borde */
+        box-sizing: border-box;
+    }
+}
+
+/* ============= TABLET (900px) ============= */
+
+@media (max-width: 900px) {
+    .main__controls-nav,
+    .main__controls-back {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .main__controls-nav .main__nav-btn,
+    .main__controls-back .main__back-btn {
+        flex: 1 1 100%;
+        min-width: unset;
+    }
+}
+
+/* ============= MOBILE GRANDE (640px) ============= */
+
+@media (max-width: 640px) {
+    .main__controls-nav .main__nav-btn,
+    .main__controls-back .main__back-btn {
+        width: 100%;
+    }
+}

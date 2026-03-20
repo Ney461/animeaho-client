@@ -1,0 +1,67 @@
+/* responsive/search.css - Media queries responsivas para search.html */
+
+/* ============= BASE RESPONSIVE ============= */
+
+#search-animes.main__animes-container {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+/* ============= DESKTOP MEDIANO (1400px) ============= */
+
+@media (max-width: 1400px) {
+    #search-animes.main__animes-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ============= DESKTOP CHICO / TABLET GRANDE (1150px) ============= */
+
+@media (max-width: 1150px) {
+    #search-animes.main__animes-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ============= TABLET (900px) ============= */
+
+@media (max-width: 900px) {
+    #search-animes.main__animes-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ============= MOBILE GRANDE (640px) ============= */
+
+@media (max-width: 640px) {
+    #search-animes.main__animes-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* pagination tweaks */
+    .main__pagination {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main__pagination-btn {
+        font-size: 0.85rem;
+        min-width: 40px;
+        padding: 4px 6px;
+    }
+}
+
+/* ============= TINY (520px) ============= */
+
+@media (max-width: 521px) {
+    /* tiny pagination adjustments */
+    .main__pagination-btn {
+        font-size: 0.8rem;
+        padding: 3px 5px;
+        min-width: 36px;
+    }
+
+    .main__pagination {
+        gap: 6px;
+    }
+}

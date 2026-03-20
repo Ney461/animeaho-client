@@ -1,0 +1,137 @@
+/* responsive/index.css - Media queries responsivas para index.html */
+
+/* ============= BASE RESPONSIVE ============= */
+
+#latest-episodes.main__animes-container {
+    grid-template-columns: repeat(auto-fill, minmax(var(--ep-card-width), 1fr));
+}
+
+#latest-animes.main__animes-container {
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+}
+
+#latest-episodes .anime-card,
+#latest-animes .anime-card {
+    width: 100%;
+}
+
+#latest-episodes .anime-card__a,
+#latest-animes .anime-card__a {
+    width: 100%;
+}
+
+#latest-animes .anime-card__name {
+    width: 100%;
+}
+
+/* ============= DESKTOP MEDIANO (1400px) ============= */
+
+@media (max-width: 1400px) {
+    :root {
+        --card-width:    160px;
+        --ep-card-width: 200px;
+    }
+}
+
+/* ============= DESKTOP CHICO / TABLET GRANDE (1150px) ============= */
+
+@media (max-width: 1150px) {
+    :root {
+        --card-width:    150px;
+        --ep-card-width: 185px;
+        --ep-card-height: 125px;
+    }
+}
+
+/* ============= TABLET (900px) ============= */
+
+@media (max-width: 900px) {
+    :root {
+        --card-width:     145px;
+        --ep-card-width:  170px;
+        --ep-card-height: 115px;
+    }
+
+    .main__sidebar {
+        width: 100%;
+        min-width: unset;
+        position: static;
+        max-height: 180px;
+        padding-right: 0;
+        padding-bottom: 12px;
+        padding-top: 0;
+        /* overflow-x: auto; - permite scroll horizontal para animes largos */
+        /* overflow-y: hidden; - oculta scroll vertical */
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .main__airing-list {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 6px;
+    }
+
+    .main__airing-list li {
+        flex-shrink: 0;
+        background-color: rgba(26, 107, 196, 0.1);
+        border: 1px solid var(--color-border);
+        border-radius: 20px;
+    }
+
+    .main__airing-list a,
+    .anime-link {
+        padding: 5px 14px;
+        font-size: 0.82rem;
+        border-left: none !important;
+        border-radius: 20px;
+        white-space: nowrap;
+    }
+
+    .main__airing-list a:hover,
+    .anime-link:hover {
+        padding-left: 14px !important;
+        border-left: none !important;
+    }
+
+    .main__content {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+    }
+}
+
+/* ============= MOBILE GRANDE (640px) ============= */
+
+@media (max-width: 640px) {
+    :root {
+        --card-width:     130px;
+        --ep-card-width:  150px;
+        --ep-card-height: 100px;
+        --card-gap:       10px;
+        --ep-gap:         10px;
+    }
+
+    .main__section-title {
+        font-size: 0.88rem;
+    }
+
+    .anime-card__name {
+        font-size: 0.78rem;
+    }
+}
+
+/* ============= TINY (520px) ============= */
+
+/* ============= MOBILE CHICO (420‑520px) ============= */
+
+@media (max-width: 521px) {
+    :root {
+        --card-width:     120px;
+        --ep-card-width:  140px;
+        --ep-card-height: 92px;
+        --card-gap:       8px;
+        --ep-gap:         8px;
+    }
+}
