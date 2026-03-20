@@ -17,29 +17,34 @@ function addListenerButtonFilter() {
     const filterContainer = document.querySelector('.filters');
 
     filterContainer.addEventListener('click', (e) => {
-        if (e.target.tagName === "BUTTON") {
-            switch (e.target.value) {
-                case "order":
-                    renderDropdownFilter(ORDER);
-                    break;
+
+        const button = e.target.closest("button");
+        if (!button) return;
+
+        const parent = button.closest(".filters__item");
+
+        switch (button.value) {
+
+            case "order":
+                renderDropdownFilter(ORDER, parent);
+                break;
                 
-                case "genres":
-                    renderDropdownFilter(ANIME_GENRES);
-                    break;
+            case "genres":
+                renderDropdownFilter(ANIME_GENRES, parent);
+                break;
                 
-                case "statuses":
-                    renderDropdownFilter(STATUSES);
-                    break;
+            case "statuses":
+                renderDropdownFilter(STATUSES, parent);
+                break;
                 
-                case "types":
-                    renderDropdownFilter(TYPES);
-                    break;
+            case "types":
+                renderDropdownFilter(TYPES, parent);
+                break;
                 
-                case "search":
-                    search();
-                    break;
+            case "search":
+                search();
+                break;
                 
-            }
         }
     });
 }

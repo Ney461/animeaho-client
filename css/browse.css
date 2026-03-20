@@ -20,11 +20,15 @@
     cursor: pointer;
 }
 
+.filters__item {
+    position: relative;
+}
+
+
 .filters__dropdown {
     position: absolute;
     top: 110%;
     left: 0;
-    width: 100%;
     background: var(--color-header);
     border: 1px solid var(--color-border);
     border-radius: 5px;
@@ -33,4 +37,5 @@
     overflow-y: auto;
     padding: 5px;
     display: none;
+    width: max-content;
 }
