@@ -1,4 +1,4 @@
-import { navigateToAnimeDetail, navigateToAnimeSearchList, navigateToEpisode } from '../utils/navigation.js';
+import { navigateToAnimeDetail, navigateToAnimeSearchList, navigateToEpisode, navigateToFilterSearch } from '../utils/navigation.js';
 
 const NAVIGATION_ICONS = {
     prev: `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M360-200 80-480l280-280 56 56-183 184h647v80H233l184 184-57 56Z"/></svg>`,
@@ -45,7 +45,7 @@ export function renderPagination(currentPage, totalPages, query, container) {
     const fragment = document.createDocumentFragment();
 
     for (const page of getPages(currentPage, totalPages)) {
-        fragment.appendChild(createPageBtn(query, page, page, currentPage == page));
+        fragment.appendChild(createPageBtn(query, page, page, currentPage == page, false));
     }
 
     container.appendChild(fragment);
@@ -78,7 +78,7 @@ function createEpisodeBtn(label, episodeSlug, direction) {
  * @param {boolean} isCurrentPage - Si es la página activa
  * @returns {HTMLButtonElement}
  */
-function createPageBtn(query, page, content, isCurrentPage) {
+function createPageBtn(query, page, content, isCurrentPage, isFilterSearch) {
     const button = document.createElement('button');
     button.textContent = `${content}`;
     button.className = isCurrentPage ? 'main__pagination-btn--active' : 'main__pagination-btn';
@@ -88,7 +88,14 @@ function createPageBtn(query, page, content, isCurrentPage) {
         button.disabled = true;
     }
 
-    button.addEventListener('click', () => navigateToAnimeSearchList(page, query));
+    
+
+    if (isFilterSearch) {
+        button.addEventListener('click', () => navigateToFilterSearch());
+    } else {
+        button.addEventListener('click', () => navigateToAnimeSearchList(page, query));
+    }
+
     return button;
 }
 

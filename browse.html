@@ -33,7 +33,7 @@
 
             <nav class="header__nav" aria-label="Navegación principal">
                 <a href="index.html">INICIO</a>
-                <a href="browse.html">ANIMES</a>
+                <a href="browse.html?order[]=default&statuses[]=1&statuses[]=2&statuses[]=3&page=1">ANIMES</a>
             </nav>
         </div>
     </header>
@@ -52,7 +52,7 @@
                                     <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
                                 </svg>
                             </button>
-                            <div class="filters__dropdown"></div>
+                            <div class="filters__dropdown" data-name="order"></div>
                         </div>
                         
                         <div class="filters__item">
@@ -62,7 +62,7 @@
                                     <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
                                 </svg>
                             </button>
-                            <div class="filters__dropdown"><a href="">añañañañ</a></div>
+                            <div class="filters__dropdown" data-name="genres"></div>
                         </div>
 
                         <div class="filters__item">
@@ -73,7 +73,7 @@
                                     <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
                                 </svg>
                             </button>
-                            <div class="filters__dropdown"></div>
+                            <div class="filters__dropdown" data-name="statuses"></div>
                         </div>
 
                         <div class="filters__item">
@@ -83,7 +83,7 @@
                                     <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
                                 </svg>
                             </button>
-                            <div class="filters__dropdown"></div>
+                            <div class="filters__dropdown" data-name="types"></div>
                         </div>
 
                         <div class="filters__item">
@@ -96,8 +96,9 @@
                         </div>
 
                     </div>
-                    <div id="latest-episodes" class="main__animes-container"></div>
+                    <div id="animes" class="main__animes-container"></div>
                 </section>
+                <nav class="main__pagination" aria-label="Paginación"></nav>
             </div>
         </div>
     </main>

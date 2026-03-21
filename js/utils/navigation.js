@@ -1,3 +1,5 @@
+import { getSelectedValues } from "./filters.js";
+
 /**
  * Navega a la página de reproducción del episodio.
  * 
@@ -28,4 +30,19 @@ export function navigateToAnimeSearchList(page, query, ) {
         const input = document.querySelector('.header__search-input');
         window.location.href = `./search.html?query=${input.value}&page=${page}`;
     }
+}
+
+export function navigateToFilterSearch(page = 1) {
+
+    const params = new URLSearchParams();
+    
+    const { order = ["default"], genres = [], statuses = [1, 2, 3], types = [] } = getSelectedValues();
+
+    order.forEach(v => params.append("order[]", v));
+    genres.forEach(v => params.append("genres[]", v));
+    statuses.forEach(v => params.append("statuses[]", v));
+    types.forEach(v => params.append("types[]", v));
+    params.append("page", page);
+
+    window.location.href = `./browse.html?${params.toString().replaceAll("%5B%5D", "[]")}`;
 }

@@ -162,14 +162,14 @@ export async function searchAnimeWithText(searchQuery, page, signal = null) {
  *
  * @async
  * @param {Object} options - Opciones de filtrado
- * @param {string} [options.order='default'] - Criterio de ordenamiento
+ * @param {string[]} [options.order='default'] - Criterio de ordenamiento
  * @param {string[]} [options.types=[]] - Tipos de anime (tv, movie, ova, special)
  * @param {string[]} [options.genres=[]] - Géneros a filtrar
  * @param {number[]} [options.statuses=[]] - Estados del anime (1=en emisión, 2=finalizado, 3=próximamente)
  * @param {number} [options.page=1] - Número de página
  * @returns {Promise<SearchAnimeResponse|ResponseError>}
  */
-export async function searchAnimeFilter({ order = 'default', types = [], genres = [], statuses = [], page = 1 } = {}) {
+export async function searchAnimeFilter({ order = ['default'], types = [], genres = [], statuses = [], page = 1 } = {}) {
     const params = new URLSearchParams({ order, page });
     const endpoint = `${BACKEND_API_BASE_URL}${BACKEND_ENDPOINTS.PROXY_SEARCH_BY_FILTER}?${params}`;
     try {

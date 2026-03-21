@@ -1,3 +1,15 @@
+:root {
+  /* Colores base */
+  --color-text: #ffffff;
+
+  /* Colores para checkboxes */
+  --color-checkbox-border: #888;       /* borde normal */
+  --color-checkbox-checked: #4caf50;   /* fondo cuando está marcado */
+  --color-checkbox-border-checked: #368039; /* borde cuando está marcado */
+  --color-checkbox-background: #f0f0f0;    /* fondo normal */
+}
+
+
 .filters {
     display: flex;
     align-items: center;
@@ -10,7 +22,7 @@
     display: flex;
     align-items: center;
     background-color: var(--color-accent);
-    color: white;
+    color: var(--color-text);
     border: none;
     border-radius: 5px;
     padding: 5px;
@@ -36,6 +48,48 @@
     max-height: 400px;
     overflow-y: auto;
     padding: 5px;
-    display: none;
     width: max-content;
+    display: none;
 }
+
+.filters__dropdown--open {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 15px;
+}
+
+.filters__dropdown form {
+    display: flex;
+    align-items: center;     
+    gap: 6px;                
+}
+
+.filters__dropdown label {
+    user-select: none;   /* evita que el texto se seleccione */
+    -webkit-user-select: none; /* soporte para navegadores basados en WebKit */
+    -moz-user-select: none;    /* soporte para Firefox */
+    cursor: pointer;
+}
+
+
+.filters__dropdown-option {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; 
+    background-color: var(--color-checkbox-background);
+    border: 2px solid var(--color-checkbox-border);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.filters__dropdown-option:checked {
+    background-color: var(--color-checkbox-checked);
+    border-color: var(--color-checkbox-border-checked);
+}
+
+.main__animes-container {
+    display: grid;
+    margin-top: 0.25rem;
+}
+

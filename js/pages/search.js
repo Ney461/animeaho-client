@@ -37,7 +37,7 @@ async function initializeAnimeSearchPage() {
         h3.textContent = 'Búsqueda Relacionada';
 
         renderAnimeCards(animes.data.media, sectionAnimes);
-        renderPagination(currentPage, foundPages, query, sectionNav);
+        renderPagination(currentPage, foundPages, query, sectionNav, false);
 
     } catch (error) {
         displayErrorMessage('Error al cargar el contenido. Intenta recargar la página.');
