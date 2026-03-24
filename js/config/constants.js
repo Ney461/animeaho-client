@@ -1,9 +1,9 @@
 export const ORDER = {
-    'default': 'Por Defecto',
-    'updated': 'Actualizado',
-    'added': 'Añadido',
-    'title': 'Título',
-    'rating': 'Clasificación'
+    'default': 'Predeterminado',
+    'updated': 'Recién Actualizados',
+    'added': 'Recién Agregados',
+    'title': 'Nombre A-Z',
+    'rating': 'Mejor Valorados'
 }
 
 export const ANIME_GENRES = {

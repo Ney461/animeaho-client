@@ -1,16 +1,66 @@
-/* responsive/browse.css - Media queries responsivas para browse.html */
+﻿/* responsive/browse.css - Media queries responsivas para browse.html */
 
 /* ============= BASE RESPONSIVE ============= */
 
-#latest-episodes.main__animes-container {
-    grid-template-columns: repeat(auto-fill, minmax(var(--ep-card-width), 1fr));
+#animes.main__animes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+    gap: var(--card-gap);
+    justify-items: center;
+    justify-content: center;
+    max-width: calc(6 * var(--card-width) + 5 * var(--card-gap));
+    margin: 0 auto;
 }
 
-#latest-episodes .anime-card {
+/* For desktop: keep original behavior exactly */
+@media (min-width: 901px) {
+    #animes.main__animes-container {
+        grid-template-columns: repeat(6, minmax(var(--card-width), 1fr));
+        max-width: 100%;
+    }
+
+    .filters {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .filters__item {
+        width: auto;
+        min-width: 130px;
+        max-width: 240px;
+    }
+
+    .filters__button,
+    .filters__search-button {
+        order: 999;
+        
+    }
+}
+
+#animes .anime-card {
     width: 100%;
+    max-width: var(--card-width);
 }
 
-#latest-episodes .anime-card__a {
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: min(100%, 760px);
+    margin: 0 auto 0.7rem;
+}
+
+.filters__item {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 160px;
+    min-width: 120px;
+    max-width: 240px;
+}
+
+#animes .anime-card__a {
     width: 100%;
 }
 
@@ -18,11 +68,13 @@
 
 @media (max-width: 1400px) {
     :root {
-        --card-width:    160px;
-        --ep-card-width: 200px;
+        --card-width: 160px;
     }
 
-    /* Browse filters responsive */
+    #animes.main__animes-container {
+        grid-template-columns: repeat(6, minmax(var(--card-width), 1fr));
+    }
+
     .filters {
         gap: 30px;
     }
@@ -32,12 +84,13 @@
 
 @media (max-width: 1150px) {
     :root {
-        --card-width:    150px;
-        --ep-card-width: 185px;
-        --ep-card-height: 125px;
+        --card-width: 150px;
     }
 
-    /* Browse filters responsive */
+    #animes.main__animes-container {
+        grid-template-columns: repeat(5, minmax(var(--card-width), 1fr));
+    }
+
     .filters {
         gap: 25px;
     }
@@ -47,12 +100,26 @@
 
 @media (max-width: 900px) {
     :root {
-        --card-width:     145px;
-        --ep-card-width:  170px;
-        --ep-card-height: 115px;
+        --card-width: 145px;
     }
 
-    /* Browse filters responsive */
+    #animes.main__animes-container {
+        grid-template-columns: repeat(4, minmax(var(--card-width), 1fr));
+    }
+
+    .filters__dropdown label,
+    .filters__dropdown input,
+    .filters__dropdown select {
+        font-size: 0.8rem;
+    }
+
+    .main__content {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+    }
+
     .filters {
         flex-direction: row;
         flex-wrap: wrap;
@@ -60,9 +127,34 @@
         justify-content: center;
     }
 
+    .filters__item {
+        position: relative;
+        width: auto;
+        min-width: 120px;
+        max-width: 240px;
+    }
+
     .filters__dropdown {
-        width: 100%;
-        max-height: 300px;
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: max-content;
+        max-width: min(100vw, 260px);
+        max-height: 240px;
+        padding: 6px;
+        background: var(--color-header);
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 999;
+    }
+
+    .filters__dropdown--open {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 6px;
     }
 }
 
@@ -70,54 +162,94 @@
 
 @media (max-width: 640px) {
     :root {
-        --card-width:     130px;
-        --ep-card-width:  150px;
-        --ep-card-height: 100px;
-        --card-gap:       10px;
-        --ep-gap:         10px;
+        --card-width: 130px;
+        --card-gap: 10px;
     }
-}
 
-/* ============= TINY (520px) ============= */
+    #animes.main__animes-container {
+        grid-template-columns: repeat(2, minmax(120px, 120px));
+        justify-content: center;
+    }
 
-@media (max-width: 521px) {
-    /* Browse filters responsive */
     .filters {
-        gap: 10px;
+        width: min(100%, 420px);
+        margin: 0 auto;
+        gap: 15px;
         padding-top: 10px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .filters__button,
-    .filters__search-button {
-        font-size: 13px;
-        padding: 3px 6px;
+    .filters__item {
+        position: relative;
+        display: inline-flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 6px;
+        margin: 0 0.2rem 0.6rem;
+        min-width: 0;
+        width: auto;
     }
 
     .filters__dropdown {
-        max-height: 200px;
-        padding: 3px;
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: max-content;
+        max-width: min(100vw - 30px, 280px);
+        max-height: 240px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        background: var(--color-header);
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+        padding: 6px;
+        z-index: 1000;
+    }
+
+    .filters__dropdown--open {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 5px;
+    }
+
+    .filters__button,
+    .filters__search-button {
+        font-size: 14px;
+        padding: 4px 8px;
     }
 }
 
-/* ============= MOBILE CHICO (420‑520px) ============= */
 
-@media (max-width: 521px) {
+/* ============= MOBILE CHICO (420px) ============= */
+
+@media (max-width: 420px) {
     :root {
-        --card-width:     120px;
-        --ep-card-width:  140px;
-        --ep-card-height: 92px;
-        --card-gap:       8px;
-        --ep-gap:         8px;
+        --card-width: 120px;
+        --card-gap: 8px;
     }
 
-    /* Browse filters responsive */
+    #animes.main__animes-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        max-width: 100%;
+        justify-content: center;
+    }
+
     .filters {
+        width: min(100%, 360px);
+        margin: 0 auto;
         gap: 8px;
         padding-top: 8px;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .filters__item {
+        position: relative;
+        width: auto;
+        min-width: 120px;
+        max-width: 240px;
     }
 
     .filters__button,
@@ -127,7 +259,25 @@
     }
 
     .filters__dropdown {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: max-content;
+        max-width: min(100vw - 30px, 240px);
         max-height: 180px;
         padding: 2px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: var(--color-header);
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+        box-sizing: border-box;
+        z-index: 1000;
+    }
+
+    .filters__dropdown--open {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 6px;
     }
 }

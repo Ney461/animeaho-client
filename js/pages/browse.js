@@ -1,12 +1,12 @@
 import { renderDropdownFilter, buildDropdownFilter } from "../components/FilterDropdown.js";
 import { ANIME_GENRES, ORDER, STATUSES, TYPES } from "../config/constants.js";
 import { addListenerInput } from "../utils/search.js";
-import { displayErrorMessage } from "../utils/errorHandler.js";
+import { displayErrorMessage, handleNoFilterResults } from "../utils/errorHandler.js";
 import { searchAnimeFilter } from "../services/animeService.js";
 import { navigateToFilterSearch } from "../utils/navigation.js";
 import { extractFilterFromURL } from "../utils/urlParams.js";
-import { renderAnimeCard, renderAnimeCards } from "../components/AnimeCard.js";
-import { getSelectedValues } from "../utils/filters.js";
+import { renderAnimeCards } from "../components/AnimeCard.js";
+
 
 async function initializeAnimeBrowsePage() {
     try {
@@ -39,7 +39,7 @@ function addListenerButtonFilter() {
         switch (button.value) {
 
             case "order":
-                renderDropdownFilter(ORDER, parent);
+                renderDropdownFilter(ORDER, parent, 'radio');
                 break;
                 
             case "genres":
@@ -70,15 +70,15 @@ function renderAllDropdowns() {
     const filterContainer = document.querySelector('.filters');
 
     const map = {
-        order : ORDER,
-        genres : ANIME_GENRES,
-        statuses : STATUSES,
-        types : TYPES
+        order:    { data: ORDER,        type: 'radio'    },
+        genres:   { data: ANIME_GENRES, type: 'checkbox' },
+        statuses: { data: STATUSES,     type: 'checkbox' },
+        types:    { data: TYPES,        type: 'checkbox' },
     };
 
-    Object.entries(map).forEach(([name, data]) => {
+    Object.entries(map).forEach(([name, { data, type }]) => {
         const parent = filterContainer.querySelector(`button[value="${name}"]`)?.closest('.filters__item');
-        if (parent) buildDropdownFilter(data, parent);
+        if (parent) buildDropdownFilter(data, parent, type);
     })
 }
 
@@ -99,16 +99,15 @@ function restoreFiltersFromURL() {
 }
 
 async function search() {
-    const { order, genres, statuses, types, page } = extractFilterFromURL();
-    const response = await searchAnimeFilter( {order, types, genres, statuses, page} );
-    console.log(response)
-    console.log(statuses)
-    const section = document.querySelector('.main__animes-container');
+    try {
+        const { order, genres, statuses, types, page } = extractFilterFromURL();
+        const response = await searchAnimeFilter( {order, types, genres, statuses, page} );
+        const section = document.querySelector('.main__animes-container');
 
-    renderAnimeCards(response.data.media, section);
-    console.log(order, genres, statuses, types, page)
-    console.log(response)
-
+        renderAnimeCards(response.data.media, section);
+    } catch (error) {
+        handleNoFilterResults();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initializeAnimeBrowsePage);

@@ -68,3 +68,17 @@ export function displayErrorMessage(message) {
         mainContent.prepend(errorDiv);
     }
 }
+
+/**
+ * Maneja el error cuando el anime solicitado no se encuentra.
+ * Muestra un mensaje de error amigable al usuario.
+ * 
+ * @returns {void}
+ */
+export function handleNoFilterResults () {
+    console.error('No se encontraron animes con esos filtros');
+    const mainContent = document.querySelector('.main__animes-container');
+    if (mainContent) {
+        mainContent.innerHTML = '<p class="error-message">Error: No se encontraron animes con esos parámetros.<br>Prueba usando otros filtros</p>';
+    }
+}

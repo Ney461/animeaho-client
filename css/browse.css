@@ -1,14 +1,46 @@
 :root {
-  /* Colores base */
-  --color-text: #ffffff;
+    /* Colores base */
+    --color-text:                    #ffffff;
 
-  /* Colores para checkboxes */
-  --color-checkbox-border: #888;       /* borde normal */
-  --color-checkbox-checked: #4caf50;   /* fondo cuando está marcado */
-  --color-checkbox-border-checked: #368039; /* borde cuando está marcado */
-  --color-checkbox-background: #f0f0f0;    /* fondo normal */
+    /* Colores para checkboxes */
+    --color-checkbox-border:         #888;     /* borde normal */
+    --color-checkbox-checked:        #4caf50;  /* fondo cuando está marcado */
+    --color-checkbox-border-checked: #368039;  /* borde cuando está marcado */
+    --color-checkbox-background:     #f0f0f0;  /* fondo normal */
+    --card-gap :                     18px;
+    --card-width:                    175px;
+    --grid-cols:                     6;
 }
 
+.main__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.main__animes-container {
+    display: grid;
+    margin-top: 0.25rem;
+}
+
+#animes.main__animes-container {
+    grid-template-columns: repeat(6, minmax(var(--card-width), 1fr));
+    gap: var(--card-gap);
+    justify-items: center;
+    align-items: start;
+    grid-auto-rows: auto;
+}
+
+#animes .anime-card {
+    width: 100%;
+    max-width: var(--card-width);
+}
+
+/* Evita desborde con filtros en móvil */
+.filters__item {
+    min-width: 0;
+}
 
 .filters {
     display: flex;
@@ -58,7 +90,7 @@
     column-gap: 15px;
 }
 
-.filters__dropdown form {
+.filters__dropdown div {
     display: flex;
     align-items: center;     
     gap: 6px;                
@@ -69,6 +101,13 @@
     -webkit-user-select: none; /* soporte para navegadores basados en WebKit */
     -moz-user-select: none;    /* soporte para Firefox */
     cursor: pointer;
+    font-size: 0.85rem;
+    line-height: 1.3;
+}
+
+.filters__dropdown input,
+.filters__dropdown select {
+    font-size: 0.85rem;
 }
 
 
@@ -93,3 +132,83 @@
     margin-top: 0.25rem;
 }
 
+.anime-card {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.anime-card__a {
+    display: block;
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.anime-card__a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(51, 146, 255, 0.5);
+    cursor: pointer;
+}
+
+.anime-card__a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(4, 19, 46, 0.65) 0%, transparent 55%);
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.anime-card__a:hover::after {
+    opacity: 1;
+}
+
+.anime-card__image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: filter 0.25s ease;
+}
+
+.anime-card__a:hover .anime-card__image {
+    filter: brightness(1.08);
+}
+
+#animes .anime-card__image {
+    aspect-ratio: 2 / 3;
+}
+
+.anime-card__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-text);
+    padding: 0 2px 2px;
+    letter-spacing: 0.01em;
+}
+
+.anime-card__badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, #1558a8, #2484e8);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 800;
+    font-family: var(--font-display);
+    padding: 3px 9px;
+    border-radius: 5px;
+    letter-spacing: 0.04em;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}

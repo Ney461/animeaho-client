@@ -1,15 +1,14 @@
-function buildDropdownItems(options, menu) {
+function buildDropdownItems(options, menu, type = 'checkbox') {
     
     if (menu.innerHTML.trim() !== "") return;
     
     for (let [key, value] of Object.entries(options)){
         const div = document.createElement('div');
-        const form = document.createElement('form');
         const label = document.createElement('label');
         const input = document.createElement('input');
 
-        input.type = 'checkbox';
-        input.name = 'genres';
+        input.type = type;
+        input.name = menu.dataset.name;
         input.className = 'filters__dropdown-option'
         input.value = key;
         input.id = key;
@@ -17,16 +16,15 @@ function buildDropdownItems(options, menu) {
         label.textContent = value;
         label.htmlFor = key;
 
-        form.appendChild(input);
-        form.appendChild(label);
-        div.appendChild(form);
+        div.appendChild(input);
+        div.appendChild(label);
 
         menu.appendChild(div);
                 
     }
 }
 
-export function renderDropdownFilter(options, parent) {
+export function renderDropdownFilter(options, parent, type = 'checkbox') {
     const menu = parent.querySelector('.filters__dropdown');
     const isOpen = menu.classList.contains("filters__dropdown--open");
 
@@ -34,12 +32,12 @@ export function renderDropdownFilter(options, parent) {
         m.classList.remove("filters__dropdown--open");
     });
 
-    buildDropdownItems(options, menu);
+    buildDropdownItems(options, menu, type);
 
     if (!isOpen) menu.classList.add("filters__dropdown--open");
 }
 
-export function buildDropdownFilter(options, parent) {
+export function buildDropdownFilter(options, parent, type = 'checkbox') {
     const menu = parent.querySelector('.filters__dropdown');
-    buildDropdownItems(options, menu);
+    buildDropdownItems(options, menu, type);
 }
