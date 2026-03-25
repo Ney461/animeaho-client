@@ -119,17 +119,20 @@ function limitGenreSelection(max = 4) {
     const genreDropdown = document.querySelector('.filters__dropdown[data-name="genres"]');
     if (!genreDropdown) return;
 
-    genreDropdown.addEventListener('change', (e) => {
-        if (e.target.type !== 'checkbox') return;
-
+    const syncDisabled = () => {
         const checkboxes = genreDropdown.querySelectorAll('input[type="checkbox"]');
         const checkedCount = [...checkboxes].filter(c => c.checked).length;
-
         checkboxes.forEach(cb => {
             if (!cb.checked) cb.disabled = checkedCount >= max;
-        })
-    });
+        });
+    };
 
+    syncDisabled();
+
+    genreDropdown.addEventListener('change', (e) => {
+        if (e.target.type !== 'checkbox') return;
+        syncDisabled();
+    });
 }
 
 document.addEventListener('DOMContentLoaded', initializeAnimeBrowsePage);
