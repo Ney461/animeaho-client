@@ -41,11 +41,11 @@ export function renderReturnButton(animeSlug, dom) {
  * @param {string} query - Término de búsqueda
  * @param {HTMLElement} container - Contenedor donde se insertan los botones
  */
-export function renderPagination(currentPage, totalPages, query, container) {
+export function renderPagination(currentPage, totalPages, query='', container, isFilterSearch) {
     const fragment = document.createDocumentFragment();
 
     for (const page of getPages(currentPage, totalPages)) {
-        fragment.appendChild(createPageBtn(query, page, page, currentPage == page, false));
+        fragment.appendChild(createPageBtn(query, page, page, currentPage == page, isFilterSearch));
     }
 
     container.appendChild(fragment);
@@ -78,7 +78,7 @@ function createEpisodeBtn(label, episodeSlug, direction) {
  * @param {boolean} isCurrentPage - Si es la página activa
  * @returns {HTMLButtonElement}
  */
-function createPageBtn(query, page, content, isCurrentPage, isFilterSearch) {
+function createPageBtn(query='', page, content, isCurrentPage, isFilterSearch) {
     const button = document.createElement('button');
     button.textContent = `${content}`;
     button.className = isCurrentPage ? 'main__pagination-btn--active' : 'main__pagination-btn';
@@ -88,10 +88,8 @@ function createPageBtn(query, page, content, isCurrentPage, isFilterSearch) {
         button.disabled = true;
     }
 
-    
-
     if (isFilterSearch) {
-        button.addEventListener('click', () => navigateToFilterSearch());
+        button.addEventListener('click', () => navigateToFilterSearch(page));
     } else {
         button.addEventListener('click', () => navigateToAnimeSearchList(page, query));
     }

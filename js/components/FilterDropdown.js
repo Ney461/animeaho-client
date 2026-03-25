@@ -1,3 +1,13 @@
+/**
+ * Posiciona un dropdown fijo debajo del botón de filtros.
+ * Calcula dinámicamente la posición para que respete el header sticky.
+ */
+function positionDropdown(button, dropdown) {
+    const rect = button.getBoundingClientRect();
+    dropdown.style.top = (rect.bottom + 5) + 'px';
+    dropdown.style.left = rect.left + 'px';
+}
+
 function buildDropdownItems(options, menu, type = 'checkbox') {
     
     if (menu.innerHTML.trim() !== "") return;
@@ -26,6 +36,7 @@ function buildDropdownItems(options, menu, type = 'checkbox') {
 
 export function renderDropdownFilter(options, parent, type = 'checkbox') {
     const menu = parent.querySelector('.filters__dropdown');
+    const button = parent.querySelector('button'); // El botón que abre el dropdown
     const isOpen = menu.classList.contains("filters__dropdown--open");
 
     document.querySelectorAll('.filters__dropdown').forEach(m => {
@@ -34,10 +45,31 @@ export function renderDropdownFilter(options, parent, type = 'checkbox') {
 
     buildDropdownItems(options, menu, type);
 
-    if (!isOpen) menu.classList.add("filters__dropdown--open");
+    if (!isOpen) {
+        positionDropdown(button, menu);
+        menu.classList.add("filters__dropdown--open");
+    }
 }
 
 export function buildDropdownFilter(options, parent, type = 'checkbox') {
     const menu = parent.querySelector('.filters__dropdown');
     buildDropdownItems(options, menu, type);
 }
+
+/**
+ * Reposiciona todos los dropdowns abiertos cuando hay scroll o resize.
+ * Esto mantiene los dropdowns fixed alineados correctamente con sus botones.
+ */
+function updateAllDropdownPositions() {
+    document.querySelectorAll('.filters__dropdown--open').forEach(dropdown => {
+        const parent = dropdown.parentElement;
+        const button = parent.querySelector('button');
+        if (button) {
+            positionDropdown(button, dropdown);
+        }
+    });
+}
+
+// Event listeners para mantener dropdowns posicionados correctamente
+window.addEventListener('scroll', updateAllDropdownPositions, true);
+window.addEventListener('resize', updateAllDropdownPositions);

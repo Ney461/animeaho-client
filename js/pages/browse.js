@@ -6,6 +6,7 @@ import { searchAnimeFilter } from "../services/animeService.js";
 import { navigateToFilterSearch } from "../utils/navigation.js";
 import { extractFilterFromURL } from "../utils/urlParams.js";
 import { renderAnimeCards } from "../components/AnimeCard.js";
+import { renderPagination } from "../components/Navbar.js";
 
 
 async function initializeAnimeBrowsePage() {
@@ -103,8 +104,11 @@ async function search() {
         const { order, genres, statuses, types, page } = extractFilterFromURL();
         const response = await searchAnimeFilter( {order, types, genres, statuses, page} );
         const section = document.querySelector('.main__animes-container');
+        const sectionNav = document.querySelector('.main__pagination');
+        const { currentPage, foundPages } = response.data; 
 
         renderAnimeCards(response.data.media, section);
+        renderPagination(currentPage, foundPages, '',sectionNav, true);
     } catch (error) {
         handleNoFilterResults();
     }

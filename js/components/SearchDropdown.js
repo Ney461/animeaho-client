@@ -4,6 +4,19 @@ import { navigateToAnimeSearchList } from "../utils/navigation.js";
 const dropdown = document.querySelector('.header__search-dropdown');
 
 /**
+ * Posiciona el dropdown debajo del input de búsqueda.
+ * Usa position: fixed para escapar del contexto de apilamiento del header sticky.
+ */
+function positionDropdown() {
+    const searchInput = document.querySelector('.header__search');
+    const rect = searchInput.getBoundingClientRect();
+    
+    dropdown.style.top = (rect.bottom + 5) + 'px';
+    dropdown.style.left = rect.left + 'px';
+    dropdown.style.width = rect.width + 'px';
+}
+
+/**
  * Renderiza los items del dropdown con los resultados de búsqueda.
  * Muestra un máximo de 5 resultados.
  * 
@@ -27,6 +40,7 @@ export function renderDropdownSearch(media) {
 
     }
 
+    positionDropdown();
     dropdown.style.display = 'block';
 }
 
@@ -36,3 +50,16 @@ export function renderDropdownSearch(media) {
 export function hideDropdown() {
     dropdown.style.display = 'none';
 }
+
+// Reposiciona el dropdown cuando se hace scroll o resize
+window.addEventListener('scroll', () => {
+    if (dropdown.style.display === 'block') {
+        positionDropdown();
+    }
+}, true);
+
+window.addEventListener('resize', () => {
+    if (dropdown.style.display === 'block') {
+        positionDropdown();
+    }
+});

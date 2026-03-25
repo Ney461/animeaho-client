@@ -54,7 +54,7 @@
 /* ============= TINY (520px) ============= */
 
 @media (max-width: 521px) {
-    /* tiny pagination adjustments */
+    
     .main__pagination-btn {
         font-size: 0.8rem;
         padding: 3px 5px;
