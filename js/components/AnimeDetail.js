@@ -141,7 +141,7 @@ function renderGenreLinks(genreList) {
         genreLink.className = 'main__anime-genre';
 
         const key = getKeyAnimeGenre(genre);
-
+        console.log(genre)
         genreLink.textContent = genre.toUpperCase();
         genreLink.href = `./browse.html?genres[]=${key}&statuses[]=1&statuses[]=2&statuses[]=3&page=1`;
         genreLink.title = `Ver animes del género ${genre}`;

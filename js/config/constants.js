@@ -34,7 +34,7 @@ export const ANIME_GENRES = {
     'parodia': 'Parodia',
     'policia': 'Policía',
     'psicologico': 'Psicológico',
-    'recuentos-de-la-vida': 'Recuentos de la Vida',
+    'recuentos-de-la-vida': 'Recuentos de la vida',
     'romance': 'Romance',
     'samurai': 'Samurái',
     'seinen': 'Seinen',
